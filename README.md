@@ -137,21 +137,29 @@ cd ~/Desktop/PORTFOLIO && python3 -m http.server 4321
 
 Poi apri <http://localhost:4321>.
 
-## Pubblicarlo su GitHub Pages
+## Il sito online
 
-Il progetto e' gia' un repository git con i commit pronti. Per metterlo online:
+**https://andreamario04040-ship-it.github.io/portfolio/**
+
+Repository: https://github.com/andreamario04040-ship-it/portfolio
+
+La pubblicazione avviene da sola a ogni push, tramite il workflow
+`.github/workflows/pages.yml`. Per aggiornare il sito dopo una modifica:
 
 ```bash
-cd ~/Desktop/PORTFOLIO && gh repo create portfolio --public --source=. --remote=origin --push
+cd ~/Desktop/PORTFOLIO && git add -A && git commit -m "aggiorno i contenuti" && git push
 ```
 
-Poi su GitHub: Settings -> Pages -> Source: "GitHub Actions". Il workflow
-`.github/workflows/pages.yml` e' gia' nel progetto e fa il resto.
+In un paio di minuti le modifiche sono online.
 
-Il sito finisce su `https://<tuo-utente>.github.io/portfolio/` e si aggiorna a ogni
-`git push`.
+### Quando comprerai il dominio
 
-## Altri modi per pubblicarlo## Altri modi per pubblicarlo## Altri modi per pubblicarlo
+1. Dal pannello del dominio punta un record `CNAME` (o i record A di GitHub Pages)
+   verso `andreamario04040-ship-it.github.io`
+2. Su GitHub: Settings -> Pages -> Custom domain, scrivi il dominio e salva
+3. In `index.html` aggiorna `canonical` e `og:url` con il nuovo indirizzo
+
+## Altri modi per pubblicarlo## Altri modi per pubblicarlo## Altri modi per pubblicarlo## Altri modi per pubblicarlo
 
 Essendo un sito statico puoi caricarlo ovunque. Il modo più rapido: trascina la cartella
 su [app.netlify.com/drop](https://app.netlify.com/drop) — online in pochi secondi, gratis,
