@@ -234,7 +234,7 @@
 
   function buildField(field, small) {
     const cards = heroCards();
-    const scale = small ? 0.6 : 1;
+    const scale = small ? 0.88 : 1;
     const items = [];
 
     HERO_LAYOUT.forEach((d, n) => {
@@ -606,20 +606,6 @@
       if (fb) fb.remove();
       frame.appendChild(img);
     }, { once: true });
-
-    /* la bolla e la foto si inclinano seguendo il mouse */
-    if (!CAN_HOVER || REDUCED) return;
-    frame.addEventListener("pointermove", e => {
-      const r = frame.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      frame.style.setProperty("--pry", (x * 16).toFixed(2) + "deg");
-      frame.style.setProperty("--prx", (-y * 12).toFixed(2) + "deg");
-    });
-    frame.addEventListener("pointerleave", () => {
-      frame.style.setProperty("--pry", "0deg");
-      frame.style.setProperty("--prx", "0deg");
-    });
   }
 
   /* ---------- AVVIO ---------- */

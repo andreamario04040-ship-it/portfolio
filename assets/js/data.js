@@ -22,11 +22,7 @@ const FOTO = "assets/img/andrea.webp";
    link       : URL del contenuto online
    views/likes: metriche mostrate sulla card (lascia "" per nasconderle)
 
-   I 5 reel puntano al singolo contenuto su Instagram.
-   ⚠️  I 4 post puntano ancora al profilo @ftcitaly: Instagram mostra solo
-       pochi post a chi non ha l'accesso, quindi non e' stato possibile
-       risalire ai link diretti. Incollali qui quando li hai sottomano
-       (su Instagram: apri il post -> ... -> "Copia link").
+   Ogni contenuto punta al suo post su Instagram.
 --------------------------------------------------------- */
 const CONTENUTI = [
   {
@@ -91,7 +87,7 @@ const CONTENUTI = [
     formato: "post",
     piattaforma: "instagram",
     img: "assets/img/reel/post-ftc-euros.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/p/DbauLwiglLl/",
     views: "",
     likes: ""
   },
@@ -102,7 +98,7 @@ const CONTENUTI = [
     formato: "post",
     piattaforma: "instagram",
     img: "assets/img/reel/post-winner.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/p/DZ0LVRFiq1I/",
     views: "",
     likes: ""
   },
@@ -113,7 +109,7 @@ const CONTENUTI = [
     formato: "post",
     piattaforma: "instagram",
     img: "assets/img/reel/post-collage.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/p/Daxzopagp8V/",
     views: "",
     likes: ""
   },
@@ -124,7 +120,7 @@ const CONTENUTI = [
     formato: "post",
     piattaforma: "instagram",
     img: "assets/img/reel/post-join-ftc.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/p/DaVd3-DC0eQ/",
     views: "",
     likes: ""
   }
