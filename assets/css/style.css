@@ -380,13 +380,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 }
 .fx-card::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(13,12,12,0) 52%,rgba(13,12,12,.86) 100%);
-}
-.fx-card__lab{
-  position:absolute;z-index:2;left:11px;right:11px;bottom:10px;
-  font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.88);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  background:linear-gradient(180deg,rgba(13,12,12,0) 70%,rgba(13,12,12,.42) 100%);
 }
 .fx-card__tag{
   position:absolute;z-index:2;top:10px;left:11px;
@@ -475,10 +469,20 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   position:absolute;left:50%;top:-28%;width:100%;
   transform:translateX(-50%);
 }
+/* La copia della testa non puo' essere tagliata da una riga dritta:
+   il bordo della bolla e' curvo e tra i due tagli restava una fessura.
+   Uso invece una fascia centrale che scende BEN DENTRO la bolla, dove le
+   due copie mostrano gli stessi pixel e la giunzione sparisce.          */
 .portrait__head{
   z-index:3;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0 20.8%,transparent 20.8%);
-          mask-image:linear-gradient(to bottom,#000 0 20.8%,transparent 20.8%);
+  -webkit-mask-image:linear-gradient(#000,#000);
+          mask-image:linear-gradient(#000,#000);
+  -webkit-mask-size:54% 46%;
+          mask-size:54% 46%;
+  -webkit-mask-position:50% 0;
+          mask-position:50% 0;
+  -webkit-mask-repeat:no-repeat;
+          mask-repeat:no-repeat;
   filter:drop-shadow(0 -4px 16px rgba(0,0,0,.4));
 }
 .portrait__fallback{

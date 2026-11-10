@@ -285,8 +285,7 @@
         const tint = ["--grad-cyan", "--grad-green", "--grad-blue", "--grad-teal"][d.i % 4];
         card.innerHTML =
           '<div class="fx-card__ph"><i style="background:var(' + tint + ')"></i></div>' +
-          '<span class="fx-card__tag">' + esc(c.tag) + '</span>' +
-          '<span class="fx-card__lab">' + esc(c.label) + '</span>';
+          '<span class="fx-card__tag">' + esc(c.tag) + '</span>';
         if (c.img) {
           const img = new Image();
           img.src = c.img;
