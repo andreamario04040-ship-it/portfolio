@@ -22,9 +22,11 @@ const FOTO = "assets/img/andrea.webp";
    link       : URL del contenuto online
    views/likes: metriche mostrate sulla card (lascia "" per nasconderle)
 
-   ⚠️  I "link" qui sotto puntano per ora al PROFILO Instagram.
-       Per mandare l'utente al singolo post, incolla l'URL diretto
-       (quello che si copia da Instagram con "Copia link").
+   I 5 reel puntano al singolo contenuto su Instagram.
+   ⚠️  I 4 post puntano ancora al profilo @ftcitaly: Instagram mostra solo
+       pochi post a chi non ha l'accesso, quindi non e' stato possibile
+       risalire ai link diretti. Incollali qui quando li hai sottomano
+       (su Instagram: apri il post -> ... -> "Copia link").
 --------------------------------------------------------- */
 const CONTENUTI = [
   {
@@ -34,7 +36,7 @@ const CONTENUTI = [
     formato: "reel",
     piattaforma: "instagram",
     img: "assets/img/reel/recitazione.webp",
-    link: "https://www.instagram.com/cinelab.torino/",
+    link: "https://www.instagram.com/reel/DUV669hiAGA/",
     views: "",
     likes: "251"
   },
@@ -45,7 +47,7 @@ const CONTENUTI = [
     formato: "reel",
     piattaforma: "instagram",
     img: "assets/img/reel/cortometraggio.webp",
-    link: "https://www.instagram.com/cinelab.torino/",
+    link: "https://www.instagram.com/reel/DVWZu6TCM4R/",
     views: "",
     likes: "169"
   },
@@ -56,7 +58,7 @@ const CONTENUTI = [
     formato: "reel",
     piattaforma: "instagram",
     img: "assets/img/reel/scrittura.webp",
-    link: "https://www.instagram.com/cinelab.torino/",
+    link: "https://www.instagram.com/reel/DWJ4kZgiFif/",
     views: "",
     likes: "210"
   },
@@ -67,7 +69,7 @@ const CONTENUTI = [
     formato: "reel",
     piattaforma: "instagram",
     img: "assets/img/reel/trailer-evento.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/reel/DXW_H2GghFy/",
     views: "",
     likes: "244"
   },
@@ -78,7 +80,7 @@ const CONTENUTI = [
     formato: "reel",
     piattaforma: "instagram",
     img: "assets/img/reel/robot.webp",
-    link: "https://www.instagram.com/ftcitaly/",
+    link: "https://www.instagram.com/reel/DXt2tIOh5rN/",
     views: "",
     likes: "102"
   },
