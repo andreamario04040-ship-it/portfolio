@@ -137,23 +137,21 @@ cd ~/Desktop/PORTFOLIO && python3 -m http.server 4321
 
 Poi apri <http://localhost:4321>.
 
-## Il sito online
+## Pubblicarlo su GitHub Pages
 
-Il sito è pubblicato su GitHub Pages:
-
-**https://andreamario04040-ship-it.github.io/portfolio/**
-
-Repository: https://github.com/andreamario04040-ship-it/portfolio (pubblico)
-
-Per aggiornarlo dopo una modifica bastano tre comandi:
+Il progetto e' gia' un repository git con i commit pronti. Per metterlo online:
 
 ```bash
-cd ~/Desktop/PORTFOLIO && git add -A && git commit -m "aggiorno i contenuti" && git push
+cd ~/Desktop/PORTFOLIO && gh repo create portfolio --public --source=. --remote=origin --push
 ```
 
-GitHub rigenera il sito da solo in un paio di minuti.
+Poi su GitHub: Settings -> Pages -> Source: "GitHub Actions". Il workflow
+`.github/workflows/pages.yml` e' gia' nel progetto e fa il resto.
 
-## Altri modi per pubblicarlo## Altri modi per pubblicarlo
+Il sito finisce su `https://<tuo-utente>.github.io/portfolio/` e si aggiorna a ogni
+`git push`.
+
+## Altri modi per pubblicarlo## Altri modi per pubblicarlo## Altri modi per pubblicarlo
 
 Essendo un sito statico puoi caricarlo ovunque. Il modo più rapido: trascina la cartella
 su [app.netlify.com/drop](https://app.netlify.com/drop) — online in pochi secondi, gratis,
