@@ -26,6 +26,15 @@ da solo — i filtri "Tutti / Reel / Post" si generano in automatico dalle categ
 Se un'immagine manca o il percorso è sbagliato, al suo posto compare un segnaposto neon
 coerente con il brand: il sito non si rompe mai.
 
+### Contenuti già caricati
+
+I 5 reel e i 4 post vengono dal deck Figma del portfolio. Le copertine sono state
+convertite in WebP: **452 KB in totale** partendo da 24 MB di originali.
+
+⚠️  I link delle card puntano per ora al **profilo** Instagram (cinelab.torino e
+ftcitaly), non al singolo post. Per sistemarli apri `assets/js/data.js` e sostituisci
+il campo `link` di ogni contenuto con l'URL che Instagram ti dà con "Copia link".
+
 ### Immagini consigliate
 | Dove | Formato | Dimensione |
 |---|---|---|
@@ -128,7 +137,23 @@ cd ~/Desktop/PORTFOLIO && python3 -m http.server 4321
 
 Poi apri <http://localhost:4321>.
 
-## Pubblicarlo
+## Il sito online
+
+Il sito è pubblicato su GitHub Pages:
+
+**https://andreamario04040-ship-it.github.io/portfolio/**
+
+Repository: https://github.com/andreamario04040-ship-it/portfolio (pubblico)
+
+Per aggiornarlo dopo una modifica bastano tre comandi:
+
+```bash
+cd ~/Desktop/PORTFOLIO && git add -A && git commit -m "aggiorno i contenuti" && git push
+```
+
+GitHub rigenera il sito da solo in un paio di minuti.
+
+## Altri modi per pubblicarlo## Altri modi per pubblicarlo
 
 Essendo un sito statico puoi caricarlo ovunque. Il modo più rapido: trascina la cartella
 su [app.netlify.com/drop](https://app.netlify.com/drop) — online in pochi secondi, gratis,
