@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Andrea Mariotti — Web Designer & Content Creator</title>
+<meta name="description" content="Portfolio di Andrea Mariotti: siti web su misura, reel e contenuti social per progetti, brand e imprese.">
+<meta name="theme-color" content="#161515">
+<link rel="canonical" href="https://andreamario04040-ship-it.github.io/portfolio/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andrea Mariotti — Web Designer & Content Creator">
+<meta property="og:description" content="Siti web su misura, reel e contenuti social per progetti, brand e imprese.">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://andreamario04040-ship-it.github.io/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon: monogramma AM sul nero del brand -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161515'/%3E%3Ctext x='32' y='44' font-family='Impact,sans-serif' font-size='34' fill='%23fff' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Person",
+  "name":"Andrea Mariotti",
+  "jobTitle":"Web Designer & Content Creator",
+  "email":"mailto:andrea.mariotticn@icloud.com",
+  "telephone":"+393319888906",
+  "address":{"@type":"PostalAddress","addressCountry":"IT"},
+  "knowsAbout":["Web Design","Social Media Management","Content Creation","Webflow"]
+}
+</script>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="logo" href="#home" aria-label="Andrea Mariotti — home">
+      <span class="logo__mark" aria-hidden="true">AM</span>
+      <span class="logo__text">Andrea<br>Mariotti</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navigazione principale">
+      <a class="nav__link" href="#chi-sono">Chi sono</a>
+      <a class="nav__link" href="#contenuti">Contenuti</a>
+      <a class="nav__link" href="#siti">Siti web</a>
+      <a class="btn btn--primary nav__cta" href="#contatti" data-magnet>Contattami</a>
+    </nav>
+
+    <button class="nav__burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== MENU MOBILE ===================== -->
+<div class="menu" id="menu">
+  <div class="blob blob--soft blob--cyan float" style="width:60vw;aspect-ratio:1;top:-10%;right:-25%"></div>
+  <div class="blob blob--soft blob--green float float--rev" style="width:50vw;aspect-ratio:1;bottom:-15%;left:-20%"></div>
+  <nav class="menu__list" aria-label="Navigazione mobile">
+    <a class="menu__link" href="#chi-sono"   style="animation-delay:.06s"><span>01</span>Chi sono</a>
+    <a class="menu__link" href="#contenuti"  style="animation-delay:.12s"><span>02</span>Contenuti</a>
+    <a class="menu__link" href="#siti"       style="animation-delay:.18s"><span>03</span>Siti web</a>
+    <a class="menu__link" href="#contatti"   style="animation-delay:.24s"><span>04</span>Contatti</a>
+  </nav>
+  <div class="menu__foot">
+    <a href="mailto:andrea.mariotticn@icloud.com">andrea.mariotticn@icloud.com</a>
+    <a href="tel:+393319888906">+39 331 988 8906</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ===================== HERO (sequenza 3D a scorrimento) ===================== -->
+<section class="hero" id="home">
+  <div class="hero__scroll" id="heroScroll">
+    <div class="hero__stage" id="heroStage">
+
+      <!-- aloni fermi sul fondo -->
+      <div class="hero__amb" aria-hidden="true">
+        <div class="blob blob--soft blob--teal float a1"></div>
+        <div class="blob blob--soft blob--blue float float--slow float--rev a2"></div>
+        <div class="blob blob--soft blob--lime drift a3"></div>
+      </div>
+
+      <div class="hero__3d" id="hero3d">
+        <!-- palline, preview e parole: generate da main.js -->
+        <div class="hero__field" id="heroField" aria-hidden="true"></div>
+
+        <div class="hero__center">
+          <h1 class="h-display hero__name" id="heroName" aria-label="Andrea Mariotti">
+            <span class="hero__line l1">Andrea</span>
+            <span class="hero__line l2">Mariotti</span>
+          </h1>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#chi-sono" id="scrollCue"><i aria-hidden="true"></i> Scorri</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CHI SONO ===================== -->
+<section class="section" id="chi-sono">
+  <div class="wrap">
+    <div class="about__grid">
+
+      <div class="portrait reveal">
+        <div class="blob blob--cyan float b1" aria-hidden="true"></div>
+        <div class="blob blob--lime float float--rev b2" aria-hidden="true"></div>
+        <div class="portrait__frame" id="portrait">
+          <!-- La foto si imposta da assets/js/data.js (costante FOTO) -->
+          <span class="portrait__fallback" aria-hidden="true">AM</span>
+        </div>
+        <span class="portrait__badge"><i class="dot" aria-hidden="true"></i> Dal 2021</span>
+      </div>
+
+      <div class="bio">
+        <h2 class="section-title" style="margin-bottom:26px" data-anim="rise">Ciao<span class="hi">&nbsp;👋</span></h2>
+        <p data-anim="fade">
+          Mi chiamo <strong>Andrea Mariotti</strong>, studio <strong>Scienze della Comunicazione</strong>
+          e lavoro ogni giorno su due fronti che si parlano: il <strong>web design</strong> e i
+          <strong>contenuti social</strong>.
+        </p>
+        <p data-anim="fade">
+          Realizzo <strong>siti web</strong> per progetti e imprese, dal primo schizzo alla messa online.
+          In parallelo mi occupo di <strong>gestione pagine social</strong>: ideo, giro e monto
+          <strong>reel e post</strong> pensati per fermare il pollice e raccontare un brand con una voce chiara.
+        </p>
+
+        <div class="stats reveal">
+          <div class="stat"><div class="stat__num"><span data-count="12" data-suffix="+">12+</span></div><div class="stat__lab">Progetti realizzati</div></div>
+          <div class="stat"><div class="stat__num"><span data-count="2" data-suffix="">2</span></div><div class="stat__lab">Realtà seguite</div></div>
+          <div class="stat"><div class="stat__num"><span data-count="5" data-suffix="">5</span></div><div class="stat__lab">Anni di esperienza</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SERVIZI -->
+    <div class="services">
+      <article class="service reveal">
+        <div class="service__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#2BE88C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.2h.01M8.5 6.2h.01"/></svg></div>
+        <h3>Siti web</h3>
+        <p>Dal concept al sito online: struttura, design, sviluppo e ottimizzazione su ogni schermo.</p>
+        <ul><li>Landing page</li><li>Siti vetrina</li><li>Restyling</li></ul>
+      </article>
+
+      <article class="service reveal" data-d="1">
+        <div class="service__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></div>
+        <h3>Reel & contenuti</h3>
+        <p>Idea, riprese, montaggio e pubblicazione. Contenuti verticali costruiti per i primi 3 secondi.</p>
+        <ul><li>Reel</li><li>Post</li><li>Montaggio</li></ul>
+      </article>
+
+      <article class="service reveal" data-d="2">
+        <div class="service__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#2B6BFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9m5.5 11V4M14 20v-8m5.5 8V6.5"/></svg></div>
+        <h3>Gestione social</h3>
+        <p>Piano editoriale, pubblicazione e analisi dei risultati per far crescere la pagina nel tempo.</p>
+        <ul><li>Piano editoriale</li><li>Community</li><li>Report</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTENUTI SOCIAL ===================== -->
+<section class="section" id="contenuti">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title" data-anim="rise">I contenuti<br>che <span class="text-grad">realizzo</span></h2>
+      </div>
+      <p data-anim="fade">
+        Reel e post prodotti per progetti personali e pagine che gestisco.
+        Ideazione, riprese, montaggio e copy: tutto in casa.
+      </p>
+    </div>
+
+    <div class="filters reveal" id="reelFilters" role="group" aria-label="Filtra i contenuti"></div>
+    <div class="reels" id="reelsGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== SITI WEB ===================== -->
+<section class="section" id="siti">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title" data-anim="rise">I siti web<br>che <span class="text-grad">costruisco</span></h2>
+      </div>
+      <p data-anim="fade">
+        Ogni progetto parte dalle persone che lo useranno: struttura chiara, caricamento rapido
+        e un design che resta addosso. Responsive di default.
+      </p>
+    </div>
+
+    <div class="works" id="worksGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== CONTATTI ===================== -->
+<section class="section contact" id="contatti">
+  <div class="blob blob--soft blob--green float b1" aria-hidden="true"></div>
+  <div class="blob blob--soft blob--cyan float float--rev b2" aria-hidden="true"></div>
+
+  <div class="wrap contact__inner">
+    <h2 class="section-title contact__title" data-anim="rise">Parliamo del<br><span class="text-grad">tuo progetto</span></h2>
+    <p class="contact__sub" data-anim="fade">
+      Hai un sito da realizzare o una pagina social da far crescere?
+      Scrivimi: rispondo entro 24 ore.
+    </p>
+
+    <div class="card reveal" data-d="2" id="bizCard">
+      <div class="card__blobs" aria-hidden="true">
+        <div class="blob blob--cyan float c1"></div>
+        <div class="blob blob--green float float--rev c2"></div>
+        <div class="blob blob--blue float float--slow c3"></div>
+      </div>
+      <div class="card__inner">
+        <p class="card__name">Mariotti Andrea</p>
+        <p class="card__role">Web Designer &amp; Content Creator</p>
+
+        <div class="card__rows">
+          <a class="card__row" href="mailto:andrea.mariotticn@icloud.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+            <div><div class="card__lab">Mail</div><div class="card__val">andrea.mariotticn@icloud.com</div></div>
+          </a>
+          <a class="card__row" href="tel:+393319888906">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+            <div><div class="card__lab">Telefono</div><div class="card__val">+39 331 988 8906</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="socials reveal" data-d="3">
+      <a class="social" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="social" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13a2.5 2.5 0 1 1-2.5-2.5c.2 0 .4 0 .6.07V9.5A5.5 5.5 0 1 0 16.5 15V8.4a7 7 0 0 0 4 1.26V6.6a4.1 4.1 0 0 1-4-4.6Z"/></svg>
+      </a>
+      <a class="social" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C20.4 8.75 21 11 21 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.27V21H9z"/></svg>
+      </a>
+      <a class="social" href="mailto:andrea.mariotticn@icloud.com" aria-label="Scrivimi una mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p>© <span id="year">2026</span> Andrea Mariotti — Tutti i diritti riservati</p>
+    <p>Progettato e sviluppato da me.</p>
+    <a class="to-top" href="#home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
+      Torna su
+    </a>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
