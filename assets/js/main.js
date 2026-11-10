@@ -178,33 +178,42 @@
   const WORD_SIZE  = [54, 76, 46, 66, 42, 60];
 
   /* x = % della larghezza · z = profondita' · st = quando entra (progresso 0-1)
-     m = 1 → presente anche su schermi piccoli                                  */
+     m = 1 → presente anche su schermi piccoli
+
+     Le palline possono sovrapporsi liberamente: danno profondita'.
+     Preview e parole no: si alternano di lato e sono distanziate nel tempo
+     (almeno 0.09 di progresso tra due elementi dallo stesso lato), cosi'
+     non finiscono mai una sopra l'altra, nemmeno su schermo stretto.
+     Tutte hanno z negativo: passano dietro al nome, mai davanti.          */
   const HERO_LAYOUT = [
+    /* --- palline --- */
     { k: "ball", c: "teal",   s: 190, x: -34, z: -520, zt: 300, st: -0.28, m: 1 },
-    { k: "card", i: 0,                x:  30, z: -300, zt: 240, st: -0.22, m: 1 },
-    { k: "word", w: 0,                x: -19, z: -180, zt: 200, st: -0.16, m: 0 },
     { k: "ball", c: "blue",   s: 150, x:  38, z: -400, zt: 260, st: -0.12, m: 1 },
     { k: "ball", c: "amber",  s:  44, x: -44, z:  130, zt: 180, st: -0.06, m: 1, g: 1 },
     { k: "ball", c: "lime",   s:  52, x:  44, z:   70, zt: 160, st: -0.04, m: 1, g: 1 },
-    { k: "card", i: 1,                x: -31, z: -360, zt: 240, st: -0.02, m: 1 },
     { k: "ball", c: "cyan",   s: 220, x: -10, z: -620, zt: 320, st:  0.04, m: 1 },
-    { k: "word", w: 1,                x:  33, z:   90, zt: 150, st:  0.08, m: 1 },
     { k: "ball", c: "lime",   s:  74, x:  20, z: -250, zt: 220, st:  0.12, m: 0 },
-    { k: "card", i: 2,                x:  33, z: -210, zt: 220, st:  0.16, m: 1 },
-    { k: "word", w: 2,                x: -30, z: -430, zt: 260, st:  0.20, m: 1 },
     { k: "ball", c: "green",  s: 130, x:  29, z: -470, zt: 280, st:  0.24, m: 0 },
     { k: "ball", c: "amber",  s: 112, x: -39, z: -360, zt: 250, st:  0.26, m: 1 },
-    { k: "card", i: 3,                x: -27, z: -430, zt: 250, st:  0.28, m: 1 },
     { k: "ball", c: "orange", s:  58, x: -24, z: -200, zt: 190, st:  0.32, m: 1, g: 1 },
-    { k: "word", w: 3,                x:  21, z: -140, zt: 170, st:  0.36, m: 0 },
     { k: "ball", c: "cyan",   s:  38, x:  43, z:  150, zt: 170, st:  0.40, m: 1, g: 1 },
-    { k: "card", i: 4,                x:  28, z: -330, zt: 240, st:  0.43, m: 0 },
     { k: "ball", c: "teal",   s: 200, x:   8, z: -580, zt: 300, st:  0.46, m: 1 },
-    { k: "word", w: 4,                x: -18, z: -540, zt: 280, st:  0.49, m: 1 },
-    { k: "card", i: 5,                x: -33, z: -240, zt: 220, st:  0.52, m: 1 },
-    { k: "ball", c: "blue",   s:  96, x:  22, z: -330, zt: 230, st:  0.55, m: 0 },
     { k: "ball", c: "orange", s: 164, x: -29, z: -500, zt: 290, st:  0.50, m: 1 },
-    { k: "word", w: 5,                x:  28, z: -120, zt: 160, st:  0.58, m: 1 }
+    { k: "ball", c: "blue",   s:  96, x:  22, z: -330, zt: 230, st:  0.55, m: 0 },
+
+    /* --- preview dei contenuti e parole chiave, alternate --- */
+    { k: "card", i: 0,        x:  32, z: -300, zt: 240, st: -0.22, m: 1 },
+    { k: "word", w: 0,        x: -24, z: -180, zt: 200, st: -0.15, m: 1 },
+    { k: "card", i: 1,        x:  30, z: -360, zt: 240, st: -0.08, m: 1 },
+    { k: "word", w: 1,        x: -22, z: -160, zt: 170, st: -0.01, m: 1 },
+    { k: "card", i: 2,        x:  33, z: -210, zt: 220, st:  0.06, m: 1 },
+    { k: "word", w: 2,        x: -25, z: -430, zt: 260, st:  0.13, m: 1 },
+    { k: "card", i: 3,        x: -31, z: -430, zt: 250, st:  0.22, m: 1 },
+    { k: "word", w: 3,        x:  24, z: -140, zt: 170, st:  0.29, m: 0 },
+    { k: "card", i: 4,        x: -29, z: -330, zt: 240, st:  0.36, m: 0 },
+    { k: "word", w: 4,        x:  22, z: -540, zt: 280, st:  0.43, m: 1 },
+    { k: "card", i: 5,        x: -32, z: -240, zt: 220, st:  0.50, m: 1 },
+    { k: "word", w: 5,        x:  25, z: -120, zt: 160, st:  0.57, m: 1 }
   ];
 
   /* Le preview arrivano dai contenuti veri: appena metti un'immagine in
@@ -234,7 +243,10 @@
 
   function buildField(field, small) {
     const cards = heroCards();
-    const scale = small ? 0.88 : 1;
+    const scale = small ? 0.95 : 1;
+    /* su uno schermo stretto la profondita' rimpicciolisce troppo gli elementi
+       lontani (quelli della parte finale): avvicino tutti i piani */
+    const zK = small ? 0.55 : 1;
     const items = [];
 
     HERO_LAYOUT.forEach((d, n) => {
@@ -288,7 +300,7 @@
       }
 
       /* profondita': i piani lontani sono piu' sfocati e piu' spenti */
-      const far = Math.min(1, Math.max(0, (-d.z - 150) / 500));
+      const far = Math.min(1, Math.max(0, (-d.z * zK - 150) / 500));
       if (far > 0.05) inner.style.filter = "blur(" + (far * 2.2).toFixed(1) + "px)";
 
       item.style.opacity = "0";
@@ -296,7 +308,7 @@
       field.appendChild(item);
 
       items.push({
-        el: item, xp: small ? d.x * 0.75 : d.x, z0: d.z, zt: d.zt,
+        el: item, xp: small ? d.x * 0.85 : d.x, z0: d.z * zK, zt: d.zt * zK,
         start: d.st, dur: 0.42,
         y0: 88, travel: 176,
         d0: 380 + items.length * 80,
@@ -596,15 +608,31 @@
   function initPortrait() {
     const frame = $("#portrait");
     if (!frame || typeof FOTO === "undefined" || !FOTO) return;
-    const img = new Image();
-    img.src = FOTO;
-    img.alt = "Ritratto di Andrea Mariotti";
-    img.className = "portrait__img";
-    img.decoding = "async";
-    img.addEventListener("load", () => {
+    const probe = new Image();
+    probe.src = FOTO;
+    probe.decoding = "async";
+    probe.addEventListener("load", () => {
       const fb = $(".portrait__fallback", frame);
       if (fb) fb.remove();
-      frame.appendChild(img);
+
+      /* copia ritagliata dal cerchio: il corpo dentro la bolla */
+      const clip = document.createElement("div");
+      clip.className = "portrait__clip";
+      const body = new Image();
+      body.src = FOTO;
+      body.alt = "Ritratto di Andrea Mariotti";
+      body.className = "portrait__body";
+      clip.appendChild(body);
+
+      /* copia mascherata: solo cio' che sta sopra il bordo della bolla */
+      const head = new Image();
+      head.src = FOTO;
+      head.alt = "";
+      head.setAttribute("aria-hidden", "true");
+      head.className = "portrait__head";
+
+      frame.appendChild(clip);
+      frame.appendChild(head);
     }, { once: true });
   }
 

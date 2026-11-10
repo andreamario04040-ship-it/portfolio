@@ -461,14 +461,25 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   background:var(--grad-blue);
   box-shadow:0 34px 90px -26px rgba(43,107,255,.7);
 }
-/* esce dalla bolla solo la testa: spalle e collo restano dentro,
-   e il bordo basso sfuma nel blu */
-.portrait__img{
-  position:absolute;left:50%;top:-12%;width:74%;
+/* La foto e' una sola, mostrata in due copie sovrapposte:
+   - .portrait__body sta dentro un cerchio che la ritaglia (il corpo riempie
+     la bolla fino in fondo e viene tagliato dal bordo)
+   - .portrait__head mostra solo la parte sopra il bordo della bolla,
+     cioe' la testa, che resta libera.
+   Stessa immagine, stessa posizione: la giunzione non si vede. */
+.portrait__clip{
+  position:absolute;inset:0;z-index:2;
+  border-radius:50%;overflow:hidden;
+}
+.portrait__body,.portrait__head{
+  position:absolute;left:50%;top:-28%;width:100%;
   transform:translateX(-50%);
-  -webkit-mask-image:linear-gradient(to bottom,#000 74%,rgba(0,0,0,.5) 90%,transparent 100%);
-          mask-image:linear-gradient(to bottom,#000 74%,rgba(0,0,0,.5) 90%,transparent 100%);
-  filter:drop-shadow(0 22px 38px rgba(0,0,0,.55));
+}
+.portrait__head{
+  z-index:3;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0 20.8%,transparent 20.8%);
+          mask-image:linear-gradient(to bottom,#000 0 20.8%,transparent 20.8%);
+  filter:drop-shadow(0 -4px 16px rgba(0,0,0,.4));
 }
 .portrait__fallback{
   font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,9vw,5.5rem);
@@ -777,13 +788,18 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   .reels{
     display:flex;grid-template-columns:none;
     gap:14px;overflow-x:auto;overscroll-behavior-x:contain;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+    scroll-padding-inline:var(--gutter);
     padding-inline:var(--gutter);padding-bottom:6px;
     margin-inline:calc(var(--gutter) * -1);
     scrollbar-width:none;
   }
   .reels::-webkit-scrollbar{display:none;}
-  .reel{flex:0 0 72%;scroll-snap-align:center;max-width:none;margin-inline:0;}
+  .reel{flex:0 0 72%;scroll-snap-align:start;max-width:none;margin-inline:0;}
+  /* dentro al carosello le card restano fuori dal viewport finche' non scorri:
+     senza questo partirebbero invisibili e rimpicciolite */
+  .reels > .reel.reveal{opacity:1;transform:none;filter:none;}
+  .reels::after{content:"";flex:0 0 2px;}
   .swipe-hint{
     display:flex;align-items:center;gap:8px;
     margin:-14px 0 18px;
