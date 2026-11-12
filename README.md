@@ -28,24 +28,31 @@ coerente con il brand: il sito non si rompe mai.
 
 ### Contenuti già caricati
 
-**14 contenuti**: 10 reel e 4 post, ognuno con il link al suo post su Instagram.
-Le copertine sono in WebP, **548 KB in tutto**.
+**19 contenuti**: 11 reel e 8 post, ognuno con il link al suo post su Instagram.
+Le copertine sono in WebP, **644 KB in tutto**.
 
-Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
+Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
 non su che piattaforma sta.
 
-**Ordine di priorità**: le card hanno tutte la stessa dimensione, quindi conta
-l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
+**Ordine di priorità**: le card hanno tutte la stessa dimensione, quindi conta
+l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
 sia nella griglia sia nel carosello del telefono: per dare rilievo a un lavoro,
-spostalo più in alto.
+spostalo più in alto.
 
-Nella hero le anteprime girano fra i clienti, così non si vede un cliente solo
+Nella hero le anteprime girano fra i clienti, così non si vede un cliente solo
 anche quando i suoi contenuti sono tutti in cima alla lista.
 
-Le copertine dei cinque reel di Francesco Fina arrivano da Instagram, che senza login
-ne serve solo una versione da 360 × 640. Per averle più nitide esporta un fotogramma
-dal video originale a 720 × 1280 e sovrascrivi il file `fina-*.webp` corrispondente
-in `assets/img/reel/`.
+### Il play sulle copertine
+
+Le copertine scaricate da Instagram (le otto con `playStampato: true` in `data.js`)
+hanno il **triangolo del play disegnato dentro l'immagine**: lo mette Instagram
+nella miniatura e non si può togliere, perché la versione pulita è accessibile
+solo da loggati. Per queste copertine il sito non aggiunge il suo pulsante play
+sull'hover, e la hero le salta: lì le anteprime non si possono cliccare, quindi un
+play sarebbe una promessa a vuoto.
+
+Per sistemarne una: esporta un fotogramma dal video a 720 × 1280, sovrascrivi il
+file in `assets/img/reel/` e togli la riga `playStampato: true` dal contenuto.
 
 ### Immagini consigliate
 | Dove | Formato | Dimensione |

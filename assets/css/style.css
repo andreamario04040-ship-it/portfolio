@@ -580,6 +580,16 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   font-size:var(--fs-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--white);
 }
 .chip svg{width:13px;height:13px;}
+.reel__play{
+  position:absolute;z-index:3;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  opacity:0;transform:scale(.8);transition:opacity .4s,transform .5s var(--ease-out);
+}
+/* il triangolo ha gia' il suo baricentro: senza margini resta centrato */
+.reel__play svg{width:19px;height:19px;}
+.reel:hover .reel__play{opacity:1;transform:none;}
 .reel__info{position:absolute;z-index:3;left:14px;right:14px;bottom:14px;}
 .reel__title{
   font-weight:600;font-size:var(--fs-md);line-height:1.35;color:var(--white);

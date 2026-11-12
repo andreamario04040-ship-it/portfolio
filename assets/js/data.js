@@ -26,6 +26,12 @@ const FOTO = "assets/img/andrea.webp";
    Le card hanno tutte la stessa dimensione: per dare rilievo a un
    contenuto basta spostarlo piu' in alto nella lista.
 
+   playStampato: true -> la copertina arriva dalla miniatura di Instagram,
+               che ha gia' il triangolo del play disegnato sopra. Il sito
+               allora non ne aggiunge un altro e la hero salta quella
+               copertina (li' le anteprime non si possono cliccare).
+               Togli questa riga quando metti una copertina tua.
+
    Sulla card il tag mostra il tipo di contenuto ("Reel" o "Post"),
    non la piattaforma. Ogni contenuto punta al suo post su Instagram.
 --------------------------------------------------------- */
@@ -39,7 +45,8 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-trailer.webp",
     link: "https://www.instagram.com/reel/DM5F9ELNgcI/",
     views: "",
-    likes: "169"
+    likes: "169",
+    playStampato: true
   },
   {
     titolo: "Trailer dell'evento",
@@ -72,7 +79,20 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-pedersoli.webp",
     link: "https://www.instagram.com/reel/DLw_sr8NCYL/",
     views: "",
-    likes: ""
+    likes: "",
+    playStampato: true
+  },
+  {
+    titolo: "Iscrizioni aperte alla stagione 2026/2027",
+    cliente: "FTC Italy",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/ftc-iscrizioni.webp",
+    link: "https://www.instagram.com/reel/DZumIwhiVgH/",
+    views: "",
+    likes: "",
+    playStampato: true
   },
   {
     titolo: "Scrittura — «Quante volte hai provato a scrivere»",
@@ -86,15 +106,16 @@ const CONTENUTI = [
     likes: "210"
   },
   {
-    titolo: "Imagine if FTC Euros were real",
+    titolo: "Le voci delle squadre al reveal",
     cliente: "FTC Italy",
-    categoria: "post",
-    formato: "post",
+    categoria: "reel",
+    formato: "reel",
     piattaforma: "instagram",
-    img: "assets/img/reel/post-ftc-euros.webp",
-    link: "https://www.instagram.com/p/DbauLwiglLl/",
+    img: "assets/img/reel/ftc-voci-squadre.webp",
+    link: "https://www.instagram.com/reel/DdoHel6iSPL/",
     views: "",
-    likes: ""
+    likes: "",
+    playStampato: true
   },
   {
     titolo: "«Il vero nemico è quello allo specchio»",
@@ -105,7 +126,19 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-specchio.webp",
     link: "https://www.instagram.com/reel/DKo5dveN9R8/",
     views: "",
-    likes: "167"
+    likes: "167",
+    playStampato: true
+  },
+  {
+    titolo: "Imagine if FTC Euros were real",
+    cliente: "FTC Italy",
+    categoria: "post",
+    formato: "post",
+    piattaforma: "instagram",
+    img: "assets/img/reel/post-ftc-euros.webp",
+    link: "https://www.instagram.com/p/DbauLwiglLl/",
+    views: "",
+    likes: ""
   },
   {
     titolo: "Cortometraggio — cosa significa oggi",
@@ -119,6 +152,41 @@ const CONTENUTI = [
     likes: "169"
   },
   {
+    titolo: "«Cosa ti viene in mente pensando a FTC?»",
+    cliente: "FTC Italy",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/ftc-cosa-pensi.webp",
+    link: "https://www.instagram.com/reel/DdZBsq5BeFI/",
+    views: "",
+    likes: "",
+    playStampato: true
+  },
+  {
+    titolo: "Come battere il tuo sparring partner",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-tecnica.webp",
+    link: "https://www.instagram.com/reel/DMnEYA4NfHk/",
+    views: "",
+    likes: "132",
+    playStampato: true
+  },
+  {
+    titolo: "Nemmeno Spider-Man resiste a FTC 2027",
+    cliente: "FTC Italy",
+    categoria: "post",
+    formato: "post",
+    piattaforma: "instagram",
+    img: "assets/img/reel/post-ftc-spiderman.webp",
+    link: "https://www.instagram.com/p/DbsftPlAjjx/",
+    views: "",
+    likes: ""
+  },
+  {
     titolo: "I robot in gara",
     cliente: "FTC Italy",
     categoria: "reel",
@@ -128,6 +196,29 @@ const CONTENUTI = [
     link: "https://www.instagram.com/reel/DXt2tIOh5rN/",
     views: "",
     likes: "102"
+  },
+  {
+    titolo: "Sparring highlights",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-sparring.webp",
+    link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
+    views: "",
+    likes: "",
+    playStampato: true
+  },
+  {
+    titolo: "Passione, innovazione, amicizia",
+    cliente: "FTC Italy",
+    categoria: "post",
+    formato: "post",
+    piattaforma: "instagram",
+    img: "assets/img/reel/post-ftc-valori.webp",
+    link: "https://www.instagram.com/p/DaA3d6Lgr-y/",
+    views: "",
+    likes: ""
   },
   {
     titolo: "Winner of the FTC Judge's Choice Award",
@@ -141,17 +232,6 @@ const CONTENUTI = [
     likes: ""
   },
   {
-    titolo: "Come battere il tuo sparring partner",
-    cliente: "Francesco Fina",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/fina-tecnica.webp",
-    link: "https://www.instagram.com/reel/DMnEYA4NfHk/",
-    views: "",
-    likes: "132"
-  },
-  {
     titolo: "Il villaggio della competizione",
     cliente: "FTC Italy",
     categoria: "post",
@@ -159,17 +239,6 @@ const CONTENUTI = [
     piattaforma: "instagram",
     img: "assets/img/reel/post-collage.webp",
     link: "https://www.instagram.com/p/Daxzopagp8V/",
-    views: "",
-    likes: ""
-  },
-  {
-    titolo: "Sparring highlights",
-    cliente: "Francesco Fina",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/fina-sparring.webp",
-    link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
     views: "",
     likes: ""
   },
