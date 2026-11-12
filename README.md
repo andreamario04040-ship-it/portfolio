@@ -28,11 +28,12 @@ coerente con il brand: il sito non si rompe mai.
 
 ### Contenuti già caricati
 
-**19 contenuti**: 11 reel e 8 post, ognuno con il link al suo post su Instagram.
-Le copertine sono in WebP, **644 KB in tutto**.
+**19 contenuti**: 13 reel e 6 post, ognuno con il link al suo post su Instagram.
+Le copertine sono in WebP, **696 KB in tutto**.
 
 Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
-non su che piattaforma sta.
+non su che piattaforma sta. Il pulsante play compare al passaggio del mouse sui
+reel, e lo disegna il sito: dentro le copertine non c'è.
 
 **Ordine di priorità**: le card hanno tutte la stessa dimensione, quindi conta
 l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
@@ -42,17 +43,14 @@ spostalo più in alto.
 Nella hero le anteprime girano fra i clienti, così non si vede un cliente solo
 anche quando i suoi contenuti sono tutti in cima alla lista.
 
-### Il play sulle copertine
+### Da dove arrivano le copertine
 
-Le copertine scaricate da Instagram (le otto con `playStampato: true` in `data.js`)
-hanno il **triangolo del play disegnato dentro l'immagine**: lo mette Instagram
-nella miniatura e non si può togliere, perché la versione pulita è accessibile
-solo da loggati. Per queste copertine il sito non aggiunge il suo pulsante play
-sull'hover, e la hero le salta: lì le anteprime non si possono cliccare, quindi un
-play sarebbe una promessa a vuoto.
-
-Per sistemarne una: esporta un fotogramma dal video a 720 × 1280, sovrascrivi il
-file in `assets/img/reel/` e togli la riga `playStampato: true` dal contenuto.
+Quelle dei contenuti CineLAB e dei primi FTC vengono dal deck Figma. Le altre
+otto sono **fotogrammi presi dal video**: la miniatura che Instagram serve per i
+reel ha il triangolo del play stampato dentro l'immagine, quindi al suo posto ho
+estratto un fotogramma pulito dal video (540 × 960 o 360 × 640, secondo la qualità
+disponibile). Se vuoi cambiarne una, basta sovrascrivere il file in
+`assets/img/reel/`: formato verticale 9:16, niente play disegnato sopra.
 
 ### Immagini consigliate
 | Dove | Formato | Dimensione |

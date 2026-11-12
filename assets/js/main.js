@@ -64,7 +64,7 @@
         <div class="reel__top">
           <span class="chip">${isPost ? "Post" : "Reel"}</span>
         </div>
-        ${!isPost && !c.playStampato ? `<span class="reel__play" aria-hidden="true">${ICON.play}</span>` : ""}
+        ${isPost ? "" : `<span class="reel__play" aria-hidden="true">${ICON.play}</span>`}
         <div class="reel__info">
           <p class="reel__title">${esc(c.titolo)}</p>
           ${stats ? `<div class="reel__stats">${stats}</div>` : ""}
@@ -216,9 +216,7 @@
     const out = [];
     if (typeof CONTENUTI !== "undefined") {
       /* prima i contenuti che hanno davvero una copertina */
-      /* nella hero le anteprime non si possono cliccare: una copertina che
-         ha gia' il play disegnato sopra prometterebbe un video che non parte */
-      const conImg = CONTENUTI.filter(c => c.img && !c.playStampato);
+      const conImg = CONTENUTI.filter(c => c.img);
       /* la hero deve raccontare tutti i progetti, non solo l'ultimo cliente:
          prendo i contenuti a giro fra i clienti, nell'ordine della lista */
       const aGiro = list => {

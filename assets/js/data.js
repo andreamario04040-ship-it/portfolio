@@ -26,12 +26,6 @@ const FOTO = "assets/img/andrea.webp";
    Le card hanno tutte la stessa dimensione: per dare rilievo a un
    contenuto basta spostarlo piu' in alto nella lista.
 
-   playStampato: true -> la copertina arriva dalla miniatura di Instagram,
-               che ha gia' il triangolo del play disegnato sopra. Il sito
-               allora non ne aggiunge un altro e la hero salta quella
-               copertina (li' le anteprime non si possono cliccare).
-               Togli questa riga quando metti una copertina tua.
-
    Sulla card il tag mostra il tipo di contenuto ("Reel" o "Post"),
    non la piattaforma. Ogni contenuto punta al suo post su Instagram.
 --------------------------------------------------------- */
@@ -45,8 +39,7 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-trailer.webp",
     link: "https://www.instagram.com/reel/DM5F9ELNgcI/",
     views: "",
-    likes: "169",
-    playStampato: true
+    likes: "169"
   },
   {
     titolo: "Trailer dell'evento",
@@ -79,8 +72,7 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-pedersoli.webp",
     link: "https://www.instagram.com/reel/DLw_sr8NCYL/",
     views: "",
-    likes: "",
-    playStampato: true
+    likes: ""
   },
   {
     titolo: "Iscrizioni aperte alla stagione 2026/2027",
@@ -91,8 +83,7 @@ const CONTENUTI = [
     img: "assets/img/reel/ftc-iscrizioni.webp",
     link: "https://www.instagram.com/reel/DZumIwhiVgH/",
     views: "",
-    likes: "",
-    playStampato: true
+    likes: ""
   },
   {
     titolo: "Scrittura — «Quante volte hai provato a scrivere»",
@@ -114,8 +105,7 @@ const CONTENUTI = [
     img: "assets/img/reel/ftc-voci-squadre.webp",
     link: "https://www.instagram.com/reel/DdoHel6iSPL/",
     views: "",
-    likes: "",
-    playStampato: true
+    likes: ""
   },
   {
     titolo: "«Il vero nemico è quello allo specchio»",
@@ -126,8 +116,7 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-specchio.webp",
     link: "https://www.instagram.com/reel/DKo5dveN9R8/",
     views: "",
-    likes: "167",
-    playStampato: true
+    likes: "167"
   },
   {
     titolo: "Imagine if FTC Euros were real",
@@ -160,8 +149,7 @@ const CONTENUTI = [
     img: "assets/img/reel/ftc-cosa-pensi.webp",
     link: "https://www.instagram.com/reel/DdZBsq5BeFI/",
     views: "",
-    likes: "",
-    playStampato: true
+    likes: ""
   },
   {
     titolo: "Come battere il tuo sparring partner",
@@ -172,8 +160,7 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-tecnica.webp",
     link: "https://www.instagram.com/reel/DMnEYA4NfHk/",
     views: "",
-    likes: "132",
-    playStampato: true
+    likes: "132"
   },
   {
     titolo: "Nemmeno Spider-Man resiste a FTC 2027",
@@ -206,8 +193,7 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-sparring.webp",
     link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
     views: "",
-    likes: "",
-    playStampato: true
+    likes: ""
   },
   {
     titolo: "Passione, innovazione, amicizia",
