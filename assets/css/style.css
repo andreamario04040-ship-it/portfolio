@@ -395,12 +395,6 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(13,12,12,0) 70%,rgba(13,12,12,.42) 100%);
 }
-.fx-card__tag{
-  position:absolute;z-index:2;top:10px;left:11px;
-  font-size:var(--fs-2xs);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--ink-900);background:rgba(255,255,255,.9);
-  padding:3px 8px;border-radius:var(--radius-pill);
-}
 
 .fx-word{
   font-family:var(--font-display);font-weight:700;text-transform:uppercase;
@@ -539,12 +533,20 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 .filter.is-active{background:var(--white);color:var(--ink-900);border-color:var(--white);font-weight:600;}
 
 /* ---------- 11. REEL / POST ---------- */
+/* I post sono 4:5 e i reel 9:16: se le righe fossero alte quanto la card
+   piu' alta, sotto ai post resterebbe un buco. Le righe sono allora da 1px
+   e ogni card ne occupa quante ne servono (lo calcola initIncastro), cosi'
+   la card seguente parte subito sotto: un incastro, senza spazi vuoti. */
 .reels{
-  display:grid;gap:var(--sp-2);
+  display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
-  /* i post sono piu' bassi dei reel: ognuno tiene la sua altezza */
+  column-gap:var(--sp-2);row-gap:0;
+  grid-auto-rows:1px;
+  /* "dense" riempie i vuoti rimasti invece di lasciarli aperti */
+  grid-auto-flow:row dense;
   align-items:start;
 }
+.reels > .reel{margin-bottom:var(--sp-2);}
 .reel{
   position:relative;display:block;border-radius:var(--radius);overflow:hidden;
   background:var(--ink-800);border:1px solid var(--line);
@@ -792,7 +794,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
     scrollbar-width:none;
   }
   .reels::-webkit-scrollbar{display:none;}
-  .reel{flex:0 0 72%;scroll-snap-align:start;max-width:none;margin-inline:0;}
+  .reels > .reel{flex:0 0 72%;scroll-snap-align:start;max-width:none;margin:0;}
   /* dentro al carosello le card restano fuori dal viewport finche' non scorri:
      senza questo partirebbero invisibili e rimpicciolite */
   .reels > .reel.reveal{opacity:1;transform:none;filter:none;}
@@ -813,7 +815,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   .footer__inner{justify-content:center;text-align:center;}
 }
 @media (max-width:420px){
-  .reel{flex-basis:78%;}
+  .reels > .reel{flex-basis:78%;}
 }
 
 /* ---------- 17. MOTION / PRINT ---------- */

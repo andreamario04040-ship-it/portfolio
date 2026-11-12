@@ -39,6 +39,11 @@ I **reel** hanno la card verticale 9:16, i **post** 4:5: un po' meno alta, come
 sta il contenuto su Instagram. Le immagini dei post si vedono intere, con la
 stessa immagine sfocata a riempire quel poco che avanza.
 
+Siccome le due altezze sono diverse, la griglia va a incastro: le righe sono da
+1px e ogni card ne occupa quante ne servono, quindi sotto a un post la card
+seguente parte subito, senza buchi. Il calcolo lo fa `initIncastro` in
+`main.js` e si rifa' da solo quando cambi larghezza o filtro.
+
 **Ordine di priorità**: le card hanno tutte la stessa larghezza, quindi conta
 l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
 sia nella griglia sia nel carosello del telefono: per dare rilievo a un lavoro,

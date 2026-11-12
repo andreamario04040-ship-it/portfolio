@@ -74,6 +74,33 @@
 
     wireFallbacks(grid);
     initFilters(grid);
+    initIncastro(grid);
+  }
+
+  /* Ogni card occupa tante righe da 1px quanto e' alta (piu' il distacco):
+     cosi' la griglia incastra reel 9:16 e post 4:5 senza lasciare buchi.
+     Sul carosello del telefono non serve: li' le card sono in fila. */
+  function initIncastro(grid) {
+    const calcola = () => {
+      const cards = $$(".reel", grid);
+      if (getComputedStyle(grid).display !== "grid") {
+        cards.forEach(c => { c.style.gridRowEnd = ""; });
+        return;
+      }
+      const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+      cards.forEach(c => { c.style.gridRowEnd = ""; });
+      cards.forEach(c => {
+        const h = c.getBoundingClientRect().height;
+        if (h > 0) c.style.gridRowEnd = "span " + Math.round(h + gap);
+      });
+    };
+    calcola();
+    requestAnimationFrame(calcola);
+    window.addEventListener("resize", () => {
+      clearTimeout(initIncastro._t);
+      initIncastro._t = setTimeout(calcola, 150);
+    }, { passive: true });
+    grid.addEventListener("ricalcola", calcola);
   }
 
   function initFilters(grid) {
@@ -95,6 +122,7 @@
         const show = f === "all" || card.dataset.cat.toLowerCase() === f;
         card.classList.toggle("is-hidden", !show);
       });
+      grid.dispatchEvent(new Event("ricalcola"));
     });
   }
 
@@ -248,13 +276,13 @@
        post[2], reel[4], reel[5], post[3], reel[6], post[4]].forEach(c => {
         if (c) out.push({
           type: (c.formato || c.categoria) === "post" ? "post" : "reel",
-          img: c.img, tag: c.categoria || "reel", label: c.titolo
+          img: c.img, label: c.titolo
         });
       });
     }
     if (typeof SITI !== "undefined") {
       SITI.filter(s2 => s2.img).slice(0, 2).forEach(s2 => out.push({
-        type: "web", img: s2.img, tag: "sito", label: s2.titolo
+        type: "web", img: s2.img, label: s2.titolo
       }));
     }
     return out;
@@ -303,8 +331,7 @@
         card.style.setProperty("--w", Math.round(base * scale) + "px");
         const tint = ["--grad-cyan", "--grad-green", "--grad-blue", "--grad-teal"][d.i % 4];
         card.innerHTML =
-          '<div class="fx-card__ph"><i style="background:var(' + tint + ')"></i></div>' +
-          '<span class="fx-card__tag">' + esc(c.tag) + '</span>';
+          '<div class="fx-card__ph"><i style="background:var(' + tint + ')"></i></div>';
         if (c.img) {
           const img = new Image();
           img.src = c.img;
