@@ -29,13 +29,17 @@ coerente con il brand: il sito non si rompe mai.
 ### Contenuti già caricati
 
 **19 contenuti**: 13 reel e 6 post, ognuno con il link al suo post su Instagram.
-Le copertine sono in WebP, **696 KB in tutto**.
+Le copertine sono in WebP, **692 KB in tutto**.
 
 Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
 non su che piattaforma sta. Il pulsante play compare al passaggio del mouse sui
 reel, e lo disegna il sito: dentro le copertine non c'è.
 
-**Ordine di priorità**: le card hanno tutte la stessa dimensione, quindi conta
+I **reel** hanno la card verticale 9:16, i **post** 4:5: un po' meno alta, come
+sta il contenuto su Instagram. Le immagini dei post si vedono intere, con la
+stessa immagine sfocata a riempire quel poco che avanza.
+
+**Ordine di priorità**: le card hanno tutte la stessa larghezza, quindi conta
 l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
 sia nella griglia sia nel carosello del telefono: per dare rilievo a un lavoro,
 spostalo più in alto.
@@ -45,12 +49,18 @@ anche quando i suoi contenuti sono tutti in cima alla lista.
 
 ### Da dove arrivano le copertine
 
-Quelle dei contenuti CineLAB e dei primi FTC vengono dal deck Figma. Le altre
-otto sono **fotogrammi presi dal video**: la miniatura che Instagram serve per i
-reel ha il triangolo del play stampato dentro l'immagine, quindi al suo posto ho
-estratto un fotogramma pulito dal video (540 × 960 o 360 × 640, secondo la qualità
-disponibile). Se vuoi cambiarne una, basta sovrascrivere il file in
-`assets/img/reel/`: formato verticale 9:16, niente play disegnato sopra.
+Le copertine dei contenuti CineLAB e dei primi FTC vengono dal deck Figma, quelle
+dei post dall'immagine originale di Instagram (intera, non il ritaglio quadrato
+che Instagram serve ai siti esterni).
+
+Per gli otto reel presi da Instagram c'è un problema noto: la miniatura pubblica
+ha il **triangolo del play stampato dentro l'immagine**. Per toglierlo ho cercato
+nel video il fotogramma usato come copertina e l'ho ripreso pulito. Per sei su
+otto è esattamente lo stesso fotogramma; per *Come battere il tuo sparring
+partner* e *Le voci delle squadre al reveal* la copertina è stata montata
+nell'editor di Instagram e nel video non esiste, quindi lì c'è il fotogramma
+più vicino. Se hai i file originali di quelle due copertine, sovrascrivi il
+`.webp` in `assets/img/reel/` e sono a posto.
 
 ### Immagini consigliate
 | Dove | Formato | Dimensione |

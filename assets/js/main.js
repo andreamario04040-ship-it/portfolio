@@ -171,43 +171,52 @@
   const WORD_STYLE = ["fill", "out", "grad", "out", "fill", "out"];
   const WORD_SIZE  = [54, 76, 46, 66, 42, 60];
 
-  /* x = % della larghezza · z = profondita' · st = quando entra (progresso 0-1)
-     m = 1 → presente anche su schermi piccoli
+  /* x = % della larghezza dal centro · z = profondita' · st = quando entra
+     m = 1 → resta anche su schermi piccoli
 
-     Le palline possono sovrapporsi liberamente: danno profondita'.
-     Preview e parole no: si alternano di lato e sono distanziate nel tempo
-     (almeno 0.09 di progresso tra due elementi dallo stesso lato), cosi'
-     non finiscono mai una sopra l'altra, nemmeno su schermo stretto.
-     Tutte hanno z negativo: passano dietro al nome, mai davanti.          */
+     Le palline possono sovrapporsi: danno profondita'.
+     Preview e parole no. Girano su quattro corsie (-41 -25 +27 +42):
+     due elementi vicini nel tempo stanno sempre da lati opposti, e due
+     elementi dallo stesso lato distano almeno 0.12 di progresso, cioe'
+     mezzo schermo in verticale. Su mobile ne resta circa la meta',
+     sempre a lati alterni, e le corsie si stringono.
+     Tutte hanno z negativo: passano dietro al nome, mai davanti.        */
   const HERO_LAYOUT = [
     /* --- palline --- */
-    { k: "ball", c: "teal",   s: 190, x: -34, z: -520, zt: 300, st: -0.28, m: 1 },
-    { k: "ball", c: "blue",   s: 150, x:  38, z: -400, zt: 260, st: -0.12, m: 1 },
-    { k: "ball", c: "amber",  s:  44, x: -44, z:  130, zt: 180, st: -0.06, m: 1, g: 1 },
-    { k: "ball", c: "lime",   s:  52, x:  44, z:   70, zt: 160, st: -0.04, m: 1, g: 1 },
-    { k: "ball", c: "cyan",   s: 220, x: -10, z: -620, zt: 320, st:  0.04, m: 1 },
-    { k: "ball", c: "lime",   s:  74, x:  20, z: -250, zt: 220, st:  0.12, m: 0 },
-    { k: "ball", c: "green",  s: 130, x:  29, z: -470, zt: 280, st:  0.24, m: 0 },
-    { k: "ball", c: "amber",  s: 112, x: -39, z: -360, zt: 250, st:  0.26, m: 1 },
-    { k: "ball", c: "orange", s:  58, x: -24, z: -200, zt: 190, st:  0.32, m: 1, g: 1 },
-    { k: "ball", c: "cyan",   s:  38, x:  43, z:  150, zt: 170, st:  0.40, m: 1, g: 1 },
-    { k: "ball", c: "teal",   s: 200, x:   8, z: -580, zt: 300, st:  0.46, m: 1 },
-    { k: "ball", c: "orange", s: 164, x: -29, z: -500, zt: 290, st:  0.50, m: 1 },
-    { k: "ball", c: "blue",   s:  96, x:  22, z: -330, zt: 230, st:  0.55, m: 0 },
+    { k: "ball", c: "teal",   s: 190, x: -36, z: -520, zt: 300, st: -0.30, m: 1 },
+    { k: "ball", c: "blue",   s: 150, x:  40, z: -400, zt: 260, st: -0.14, m: 1 },
+    { k: "ball", c: "amber",  s:  44, x: -47, z:  130, zt: 180, st: -0.08, m: 1, g: 1 },
+    { k: "ball", c: "lime",   s:  52, x:  47, z:   70, zt: 160, st: -0.05, m: 1, g: 1 },
+    { k: "ball", c: "cyan",   s: 220, x: -10, z: -620, zt: 320, st:  0.03, m: 1 },
+    { k: "ball", c: "green",  s:  74, x:  18, z: -250, zt: 220, st:  0.10, m: 0 },
+    { k: "ball", c: "orange", s: 130, x:  33, z: -470, zt: 280, st:  0.17, m: 0 },
+    { k: "ball", c: "amber",  s: 112, x: -43, z: -360, zt: 250, st:  0.22, m: 1 },
+    { k: "ball", c: "teal",   s:  58, x: -20, z: -200, zt: 190, st:  0.28, m: 1, g: 1 },
+    { k: "ball", c: "cyan",   s:  38, x:  46, z:  150, zt: 170, st:  0.34, m: 1, g: 1 },
+    { k: "ball", c: "lime",   s: 200, x:   8, z: -580, zt: 300, st:  0.40, m: 1 },
+    { k: "ball", c: "orange", s: 164, x: -33, z: -500, zt: 290, st:  0.46, m: 1 },
+    { k: "ball", c: "blue",   s:  96, x:  24, z: -330, zt: 230, st:  0.52, m: 0 },
+    { k: "ball", c: "green",  s: 128, x: -14, z: -560, zt: 300, st:  0.58, m: 1 },
+    { k: "ball", c: "cyan",   s:  66, x:  38, z: -230, zt: 200, st:  0.63, m: 0 },
+    { k: "ball", c: "teal",   s:  46, x: -46, z:  110, zt: 170, st:  0.68, m: 1, g: 1 },
 
-    /* --- preview dei contenuti e parole chiave, alternate --- */
-    { k: "card", i: 0,        x:  32, z: -300, zt: 240, st: -0.22, m: 1 },
-    { k: "word", w: 0,        x: -24, z: -180, zt: 200, st: -0.15, m: 1 },
-    { k: "card", i: 1,        x:  30, z: -360, zt: 240, st: -0.08, m: 1 },
-    { k: "word", w: 1,        x: -22, z: -160, zt: 170, st: -0.01, m: 1 },
-    { k: "card", i: 2,        x:  33, z: -210, zt: 220, st:  0.06, m: 1 },
-    { k: "word", w: 2,        x: -25, z: -430, zt: 260, st:  0.13, m: 1 },
-    { k: "card", i: 3,        x: -31, z: -430, zt: 250, st:  0.22, m: 1 },
-    { k: "word", w: 3,        x:  24, z: -140, zt: 170, st:  0.29, m: 0 },
-    { k: "card", i: 4,        x: -29, z: -330, zt: 240, st:  0.36, m: 0 },
-    { k: "word", w: 4,        x:  22, z: -540, zt: 280, st:  0.43, m: 1 },
-    { k: "card", i: 5,        x: -32, z: -240, zt: 220, st:  0.50, m: 1 },
-    { k: "word", w: 5,        x:  25, z: -120, zt: 160, st:  0.57, m: 1 }
+    /* --- anteprime dei contenuti e parole chiave, a corsie alterne --- */
+    { k: "card", i: 0, x:  42, z: -300, zt: 240, st: -0.30, m: 1 },
+    { k: "word", w: 0, x: -25, z: -170, zt: 190, st: -0.24, m: 1 },
+    { k: "card", i: 1, x:  27, z: -380, zt: 250, st: -0.18, m: 0 },
+    { k: "word", w: 1, x: -41, z: -230, zt: 210, st: -0.12, m: 0 },
+    { k: "card", i: 2, x:  42, z: -220, zt: 220, st: -0.06, m: 1 },
+    { k: "card", i: 3, x: -25, z: -430, zt: 260, st:  0.00, m: 1 },
+    { k: "word", w: 2, x:  27, z: -150, zt: 170, st:  0.06, m: 0 },
+    { k: "card", i: 4, x: -41, z: -340, zt: 240, st:  0.12, m: 0 },
+    { k: "card", i: 5, x:  42, z: -260, zt: 230, st:  0.18, m: 1 },
+    { k: "word", w: 3, x: -25, z: -400, zt: 250, st:  0.24, m: 1 },
+    { k: "card", i: 6, x:  27, z: -350, zt: 240, st:  0.30, m: 0 },
+    { k: "card", i: 7, x: -41, z: -240, zt: 220, st:  0.36, m: 0 },
+    { k: "word", w: 4, x:  42, z: -180, zt: 190, st:  0.42, m: 1 },
+    { k: "card", i: 8, x: -25, z: -320, zt: 240, st:  0.48, m: 1 },
+    { k: "card", i: 9, x:  27, z: -430, zt: 260, st:  0.54, m: 0 },
+    { k: "word", w: 5, x: -41, z: -140, zt: 170, st:  0.60, m: 0 }
   ];
 
   /* Le preview arrivano dai contenuti veri: appena metti un'immagine in
@@ -235,7 +244,8 @@
       const reel = aGiro(conImg.filter(c => (c.formato || c.categoria) !== "post"));
       const post = aGiro(conImg.filter(c => (c.formato || c.categoria) === "post"));
       /* alterna reel e post cosi' la hero mostra un po' di tutto */
-      [reel[0], post[0], reel[1], reel[2], post[1], reel[3]].forEach(c => {
+      [reel[0], post[0], reel[1], reel[2], post[1], reel[3],
+       post[2], reel[4], reel[5], post[3], reel[6], post[4]].forEach(c => {
         if (c) out.push({
           type: (c.formato || c.categoria) === "post" ? "post" : "reel",
           img: c.img, tag: c.categoria || "reel", label: c.titolo
@@ -316,7 +326,10 @@
       field.appendChild(item);
 
       items.push({
-        el: item, xp: small ? d.x * 0.85 : d.x, z0: d.z * zK, zt: d.zt * zK,
+        el: item,
+        /* su schermo stretto le corsie esterne uscirebbero dal bordo */
+        xp: small ? Math.max(-28, Math.min(28, d.x * 0.72)) : d.x,
+        z0: d.z * zK, zt: d.zt * zK,
         start: d.st, dur: 0.42,
         y0: 88, travel: 176,
         d0: 380 + items.length * 80,

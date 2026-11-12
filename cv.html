@@ -108,17 +108,14 @@ a{color:inherit;text-decoration:none;}
 /* la foto e' una sola, in due copie sovrapposte:
    il corpo vive dentro il cerchio, la testa resta libera sopra il bordo */
 .portrait__clip{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;}
-.portrait__body,.portrait__head{
-  position:absolute;left:50%;top:-22%;width:100%;
-  transform:translateX(-50%);
+.portrait__body{position:absolute;left:50%;top:-28%;width:100%;transform:translateX(-50%);}
+/* la testa che esce dalla bolla: una fascia centrale, ritagliata da overflow
+   (niente mask: alcuni motori PDF la ignorano) */
+.portrait__pop{
+  position:absolute;left:23%;width:54%;top:-28%;height:46%;
+  overflow:hidden;z-index:3;
 }
-.portrait__head{
-  z-index:3;
-  -webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000);
-  -webkit-mask-size:54% 42%;mask-size:54% 42%;
-  -webkit-mask-position:50% 0;mask-position:50% 0;
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-}
+.portrait__pop img{position:absolute;top:0;left:50%;width:185.2%;transform:translateX(-50%);}
 
 /* ---------- colonna sinistra ---------- */
 .contacts{display:grid;gap:2.4mm;}
@@ -151,7 +148,7 @@ a{color:inherit;text-decoration:none;}
 /* ---------- colonna destra ---------- */
 .about{
   padding:3.4mm 4mm;border-radius:var(--radius);
-  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  background:rgba(255,255,255,.06);
   border:1px solid var(--line);
   font-size:9.6pt;color:var(--text);
 }
@@ -223,7 +220,9 @@ a{color:inherit;text-decoration:none;}
         <span class="portrait__clip">
           <img class="portrait__body" src="assets/img/andrea.webp" alt="Andrea Mariotti">
         </span>
-        <img class="portrait__head" src="assets/img/andrea.webp" alt="" aria-hidden="true">
+        <span class="portrait__pop" aria-hidden="true">
+          <img src="assets/img/andrea.webp" alt="">
+        </span>
       </figure>
 
       <section class="block">
@@ -277,7 +276,7 @@ a{color:inherit;text-decoration:none;}
             <h3 class="job__role">Social media manager — FTC Italy</h3>
             <div class="job__meta">
               <span class="job__org">First Tech Challenge (Italy)</span>
-              <span class="job__when">Aprile 2026 — presente</span>
+              <span class="job__when">Aprile 2026 — ottobre 2026</span>
             </div>
             <ul class="job__list">
               <li>Creazione di strategie di comunicazione</li>
