@@ -34,15 +34,18 @@ Le copertine sono in WebP, **548 KB in tutto**.
 Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
 non su che piattaforma sta.
 
-**Mettere un contenuto in evidenza**: aggiungi `rilievo: true` al suo blocco in
-`data.js`. La card occupa due colonne e due righe (quindi è grande il doppio ma
-resta 9:16) e prende l'etichetta "In evidenza". Tienine **due o quattro** e mettili
-in cima alla lista: così riempiono righe intere e la griglia non lascia buchi.
+**Ordine di priorità**: le card hanno tutte la stessa dimensione, quindi conta
+l'ordine della lista in `data.js`. Il primo contenuto è il primo che si vede,
+sia nella griglia sia nel carosello del telefono: per dare rilievo a un lavoro,
+spostalo più in alto.
+
+Nella hero le anteprime girano fra i clienti, così non si vede un cliente solo
+anche quando i suoi contenuti sono tutti in cima alla lista.
 
 Le copertine dei cinque reel di Francesco Fina arrivano da Instagram, che senza login
-ne serve solo una versione da 360 × 640. Se vuoi le due card in evidenza più nitide,
-esporta un fotogramma dal video originale a 720 × 1280 e sovrascrivi
-`assets/img/reel/fina-trailer.webp` e `assets/img/reel/fina-pedersoli.webp`.
+ne serve solo una versione da 360 × 640. Per averle più nitide esporta un fotogramma
+dal video originale a 720 × 1280 e sovrascrivi il file `fina-*.webp` corrispondente
+in `assets/img/reel/`.
 
 ### Immagini consigliate
 | Dove | Formato | Dimensione |

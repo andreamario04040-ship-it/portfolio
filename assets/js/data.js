@@ -21,9 +21,10 @@ const FOTO = "assets/img/andrea.webp";
    img        : copertina, es. "assets/img/reel/nome.webp"
    link       : URL del contenuto online
    views/likes: metriche mostrate sulla card (lascia "" per nasconderle)
-   rilievo   : true -> il contenuto va in evidenza (card doppia, in cima
-               alla griglia). Tienine due o quattro: occupano due colonne
-               e due righe ciascuna, cosi' la griglia resta piena.
+   L'ORDINE DI QUESTA LISTA E' L'ORDINE DI PRIORITA': il primo contenuto
+   e' il primo che si vede nella griglia (e nel carosello su telefono).
+   Le card hanno tutte la stessa dimensione: per dare rilievo a un
+   contenuto basta spostarlo piu' in alto nella lista.
 
    Sulla card il tag mostra il tipo di contenuto ("Reel" o "Post"),
    non la piattaforma. Ogni contenuto punta al suo post su Instagram.
@@ -38,8 +39,29 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-trailer.webp",
     link: "https://www.instagram.com/reel/DM5F9ELNgcI/",
     views: "",
-    likes: "169",
-    rilievo: true
+    likes: "169"
+  },
+  {
+    titolo: "Trailer dell'evento",
+    cliente: "FTC Italy",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/trailer-evento.webp",
+    link: "https://www.instagram.com/reel/DXW_H2GghFy/",
+    views: "",
+    likes: "244"
+  },
+  {
+    titolo: "Recitazione — «Quanto ci credevamo?»",
+    cliente: "Ass. CineLAB",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/recitazione.webp",
+    link: "https://www.instagram.com/reel/DUV669hiAGA/",
+    views: "",
+    likes: "251"
   },
   {
     titolo: "Come ho vinto contro Carlo Pedersoli Jr",
@@ -50,8 +72,29 @@ const CONTENUTI = [
     img: "assets/img/reel/fina-pedersoli.webp",
     link: "https://www.instagram.com/reel/DLw_sr8NCYL/",
     views: "",
-    likes: "",
-    rilievo: true
+    likes: ""
+  },
+  {
+    titolo: "Scrittura — «Quante volte hai provato a scrivere»",
+    cliente: "Ass. CineLAB",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/scrittura.webp",
+    link: "https://www.instagram.com/reel/DWJ4kZgiFif/",
+    views: "",
+    likes: "210"
+  },
+  {
+    titolo: "Imagine if FTC Euros were real",
+    cliente: "FTC Italy",
+    categoria: "post",
+    formato: "post",
+    piattaforma: "instagram",
+    img: "assets/img/reel/post-ftc-euros.webp",
+    link: "https://www.instagram.com/p/DbauLwiglLl/",
+    views: "",
+    likes: ""
   },
   {
     titolo: "«Il vero nemico è quello allo specchio»",
@@ -65,13 +108,35 @@ const CONTENUTI = [
     likes: "167"
   },
   {
-    titolo: "Sparring highlights",
-    cliente: "Francesco Fina",
+    titolo: "Cortometraggio — cosa significa oggi",
+    cliente: "Ass. CineLAB",
     categoria: "reel",
     formato: "reel",
     piattaforma: "instagram",
-    img: "assets/img/reel/fina-sparring.webp",
-    link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
+    img: "assets/img/reel/cortometraggio.webp",
+    link: "https://www.instagram.com/reel/DVWZu6TCM4R/",
+    views: "",
+    likes: "169"
+  },
+  {
+    titolo: "I robot in gara",
+    cliente: "FTC Italy",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/robot.webp",
+    link: "https://www.instagram.com/reel/DXt2tIOh5rN/",
+    views: "",
+    likes: "102"
+  },
+  {
+    titolo: "Winner of the FTC Judge's Choice Award",
+    cliente: "FTC Italy",
+    categoria: "post",
+    formato: "post",
+    piattaforma: "instagram",
+    img: "assets/img/reel/post-winner.webp",
+    link: "https://www.instagram.com/p/DZ0LVRFiq1I/",
     views: "",
     likes: ""
   },
@@ -87,83 +152,6 @@ const CONTENUTI = [
     likes: "132"
   },
   {
-    titolo: "Recitazione — «Quanto ci credevamo?»",
-    cliente: "Ass. CineLAB",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/recitazione.webp",
-    link: "https://www.instagram.com/reel/DUV669hiAGA/",
-    views: "",
-    likes: "251"
-  },
-  {
-    titolo: "Cortometraggio — cosa significa oggi",
-    cliente: "Ass. CineLAB",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/cortometraggio.webp",
-    link: "https://www.instagram.com/reel/DVWZu6TCM4R/",
-    views: "",
-    likes: "169"
-  },
-  {
-    titolo: "Scrittura — «Quante volte hai provato a scrivere»",
-    cliente: "Ass. CineLAB",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/scrittura.webp",
-    link: "https://www.instagram.com/reel/DWJ4kZgiFif/",
-    views: "",
-    likes: "210"
-  },
-  {
-    titolo: "Trailer dell'evento",
-    cliente: "FTC Italy",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/trailer-evento.webp",
-    link: "https://www.instagram.com/reel/DXW_H2GghFy/",
-    views: "",
-    likes: "244"
-  },
-  {
-    titolo: "I robot in gara",
-    cliente: "FTC Italy",
-    categoria: "reel",
-    formato: "reel",
-    piattaforma: "instagram",
-    img: "assets/img/reel/robot.webp",
-    link: "https://www.instagram.com/reel/DXt2tIOh5rN/",
-    views: "",
-    likes: "102"
-  },
-  {
-    titolo: "Imagine if FTC Euros were real",
-    cliente: "FTC Italy",
-    categoria: "post",
-    formato: "post",
-    piattaforma: "instagram",
-    img: "assets/img/reel/post-ftc-euros.webp",
-    link: "https://www.instagram.com/p/DbauLwiglLl/",
-    views: "",
-    likes: ""
-  },
-  {
-    titolo: "Winner of the FTC Judge's Choice Award",
-    cliente: "FTC Italy",
-    categoria: "post",
-    formato: "post",
-    piattaforma: "instagram",
-    img: "assets/img/reel/post-winner.webp",
-    link: "https://www.instagram.com/p/DZ0LVRFiq1I/",
-    views: "",
-    likes: ""
-  },
-  {
     titolo: "Il villaggio della competizione",
     cliente: "FTC Italy",
     categoria: "post",
@@ -171,6 +159,17 @@ const CONTENUTI = [
     piattaforma: "instagram",
     img: "assets/img/reel/post-collage.webp",
     link: "https://www.instagram.com/p/Daxzopagp8V/",
+    views: "",
+    likes: ""
+  },
+  {
+    titolo: "Sparring highlights",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-sparring.webp",
+    link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
     views: "",
     likes: ""
   },

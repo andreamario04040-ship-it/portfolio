@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Andrea Mariotti — Curriculum Vitae</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   CV — stessa brand identity del portfolio
+   Superfici: charcoal  ·  Accenti: neon verde/teal/ciano/blu
+   Display: Oswald  ·  Testo: Inter
+   ========================================================= */
+:root{
+  --ink-900:#0D0C0C;
+  --ink:#161515;
+  --ink-800:#1C1B1B;
+  --ink-700:#232222;
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.22);
+  --white:#FFFFFF;
+  --text:#EDEBEB;
+  --mute:rgba(237,235,235,.60);
+  --mute-2:rgba(237,235,235,.42);
+  --green:#2BE88C;
+  --teal:#14C8A6;
+  --cyan:#22D3EE;
+  --blue:#2B6BFF;
+  --grad-brand:linear-gradient(90deg,#2BE88C 0%,#22D3EE 48%,#2B6BFF 100%);
+  --font-display:"Oswald",Impact,"Haettenschweiler",sans-serif;
+  --font-ui:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --radius:14px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+*{margin:0;padding:0;}
+html{background:#0A0909;}
+body{
+  font-family:var(--font-ui);
+  color:var(--text);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  display:flex;justify-content:center;
+  padding:24px 16px;
+}
+ul{list-style:none;}
+a{color:inherit;text-decoration:none;}
+
+/* ---------- foglio A4 ---------- */
+.sheet{
+  position:relative;overflow:hidden;
+  width:210mm;min-height:297mm;
+  background:var(--ink);
+  color:var(--text);
+  padding:14mm 13mm 12mm;
+  display:flex;flex-direction:column;
+  font-size:9.6pt;
+}
+/* blob neon del brand, discreti */
+.blob{position:absolute;border-radius:50%;filter:blur(42px);z-index:0;}
+.blob--1{width:70mm;height:70mm;top:-26mm;right:-20mm;background:radial-gradient(circle at 35% 35%,rgba(43,232,140,.42),rgba(43,232,140,0) 70%);}
+.blob--2{width:58mm;height:58mm;top:34mm;right:-26mm;background:radial-gradient(circle at 40% 40%,rgba(34,211,238,.30),rgba(34,211,238,0) 70%);}
+.blob--3{width:66mm;height:66mm;bottom:-30mm;left:-24mm;background:radial-gradient(circle at 50% 50%,rgba(43,107,255,.30),rgba(43,107,255,0) 70%);}
+.sheet > *:not(.blob){position:relative;z-index:1;}
+
+/* ---------- intestazione ---------- */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:10mm;}
+.name{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  font-size:44pt;line-height:.9;letter-spacing:-.01em;color:var(--white);
+}
+.name span{display:block;}
+.role{
+  margin-top:3.5mm;
+  font-size:8pt;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--white);
+}
+.head__mark{
+  flex:none;width:17mm;height:17mm;border-radius:var(--radius);
+  display:grid;place-items:center;
+  background:var(--grad-brand);
+  font-family:var(--font-display);font-weight:700;font-size:15pt;letter-spacing:.02em;
+  color:var(--ink-900);
+}
+.rule{height:2.4px;margin:6.5mm 0 7.5mm;border-radius:999px;background:var(--grad-brand);}
+
+/* ---------- griglia a due colonne ---------- */
+.grid{display:grid;grid-template-columns:64mm 1fr;gap:9.5mm;align-items:start;}
+
+/* ---------- titoli di sezione ---------- */
+.s-title{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  font-size:15pt;line-height:1;color:var(--white);letter-spacing:.005em;
+  display:flex;align-items:center;gap:3mm;
+}
+.s-title::before{
+  content:"";flex:none;width:4mm;height:2.2px;border-radius:999px;background:var(--grad-brand);
+}
+.block + .block{margin-top:7.5mm;}
+.block__body{margin-top:4mm;}
+
+/* ---------- colonna sinistra ---------- */
+.photo{
+  width:100%;aspect-ratio:1/1;overflow:hidden;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line-strong);
+  background:var(--ink-700);
+  margin-bottom:7mm;
+}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block;}
+
+.contacts{display:grid;gap:2.4mm;}
+.contact{
+  padding:2.6mm 3.2mm;border-radius:10px;
+  background:var(--ink-800);border:1px solid var(--line);
+}
+.contact__lab{
+  font-size:6.6pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute-2);
+}
+.contact__val{margin-top:.6mm;font-size:8.8pt;font-weight:500;color:var(--white);word-break:break-word;}
+
+.tags{display:flex;flex-wrap:wrap;gap:1.8mm;}
+.tag{
+  font-size:8pt;letter-spacing:.03em;padding:1.6mm 3mm;
+  border-radius:var(--radius-pill);border:1px solid var(--line-strong);
+  color:var(--text);background:rgba(255,255,255,.04);
+}
+
+.edu{display:grid;gap:3mm;}
+.edu__item{padding-left:3.4mm;border-left:1.6px solid rgba(43,232,140,.55);}
+.edu__school{
+  font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+  font-size:10.6pt;line-height:1.1;color:var(--white);
+}
+.edu__deg{margin-top:.8mm;font-size:8.6pt;color:var(--mute);}
+.edu__when{margin-top:.8mm;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--mute-2);}
+
+/* ---------- colonna destra ---------- */
+.about{
+  padding:4mm 4.4mm;border-radius:var(--radius);
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  font-size:9.6pt;color:var(--text);
+}
+
+.jobs{display:grid;gap:3.8mm;}
+.job{
+  padding:4.4mm 4.8mm;border-radius:var(--radius);
+  background:var(--ink-800);border:1px solid var(--line);
+}
+.job__top{display:flex;align-items:baseline;justify-content:space-between;gap:5mm;}
+.job__role{
+  font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+  font-size:12.4pt;line-height:1.1;color:var(--white);letter-spacing:.005em;
+}
+.job__when{
+  flex:none;font-size:7.4pt;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--mute-2);white-space:nowrap;
+}
+.job__org{
+  margin-top:1.4mm;font-size:8.8pt;font-weight:600;letter-spacing:.02em;
+  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent;
+  width:fit-content;
+}
+.job__list{margin-top:2.6mm;display:grid;gap:1.4mm;}
+.job__list li{position:relative;padding-left:4mm;font-size:9pt;color:var(--mute);}
+.job__list li::before{
+  content:"";position:absolute;left:0;top:1.55mm;
+  width:1.8mm;height:1.8mm;border-radius:50%;background:var(--green);
+}
+
+/* ---------- piede ---------- */
+.foot{
+  margin-top:auto;padding-top:7mm;
+  display:flex;align-items:center;justify-content:space-between;gap:6mm;
+  border-top:1px solid var(--line);
+  font-size:7.2pt;letter-spacing:.12em;text-transform:uppercase;color:var(--mute-2);
+}
+
+/* ---------- stampa / PDF ---------- */
+@page{size:A4;margin:0;}
+@media print{
+  html,body{background:#fff;}
+  body{display:block;padding:0;}
+  .sheet{width:210mm;height:297mm;box-shadow:none;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+
+<main class="sheet">
+  <span class="blob blob--1" aria-hidden="true"></span>
+  <span class="blob blob--2" aria-hidden="true"></span>
+  <span class="blob blob--3" aria-hidden="true"></span>
+
+  <header class="head">
+    <div>
+      <h1 class="name"><span>Andrea</span><span>Mariotti</span></h1>
+      <p class="role">Studente in comunicazione</p>
+    </div>
+    <div class="head__mark" aria-hidden="true">AM</div>
+  </header>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <div class="grid">
+
+    <!-- ===== colonna sinistra ===== -->
+    <aside>
+      <figure class="photo">
+        <img src="assets/img/andrea.webp" alt="Andrea Mariotti">
+      </figure>
+
+      <section class="block">
+        <h2 class="s-title">Contatti</h2>
+        <div class="block__body contacts">
+          <div class="contact">
+            <div class="contact__lab">Indirizzo</div>
+            <div class="contact__val">Via Gabriele Chiabrera 6, TO</div>
+          </div>
+          <div class="contact">
+            <div class="contact__lab">Email</div>
+            <div class="contact__val">andrea.mariotticn@icloud.com</div>
+          </div>
+          <div class="contact">
+            <div class="contact__lab">LinkedIn</div>
+            <div class="contact__val">Andrea Mariotti</div>
+          </div>
+          <div class="contact">
+            <div class="contact__lab">Telefono</div>
+            <div class="contact__val">+39 3319888906</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="s-title">Competenze</h2>
+        <div class="block__body tags">
+          <span class="tag">Videomaking</span>
+          <span class="tag">Creazione siti web</span>
+          <span class="tag">Creazione strategie di comunicazione</span>
+          <span class="tag">Graphic design</span>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="s-title">Formazione</h2>
+        <div class="block__body edu">
+          <div class="edu__item">
+            <h3 class="edu__school">Università di Torino</h3>
+            <p class="edu__deg">Triennale in scienze della comunicazione</p>
+            <p class="edu__when">2024 — presente</p>
+          </div>
+          <div class="edu__item">
+            <h3 class="edu__school">ITIS Mario Delpozzo</h3>
+            <p class="edu__deg">Diploma in informatica e telecomunicazioni</p>
+            <p class="edu__when">2018 — 2023</p>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <!-- ===== colonna destra ===== -->
+    <div>
+      <section class="block">
+        <h2 class="s-title">Panoramica generale</h2>
+        <p class="block__body about">
+          Sono uno studente del 3° anno in scienze della comunicazione presso l’Università degli Studi di Torino.
+        </p>
+      </section>
+
+      <section class="block">
+        <h2 class="s-title">Esperienze professionali</h2>
+        <div class="block__body jobs">
+
+          <article class="job">
+            <div class="job__top">
+              <h3 class="job__role">Social media manager — FTC Italy</h3>
+              <span class="job__when">Aprile 2026 — presente</span>
+            </div>
+            <p class="job__org">First Tech Challenge (Italy)</p>
+            <ul class="job__list">
+              <li>Creazione di strategie di comunicazione</li>
+              <li>Creazione di contenuti digitali</li>
+              <li>Realizzazione di siti web</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job__top">
+              <h3 class="job__role">Tirocinio universitario — Ass. Cinelab</h3>
+              <span class="job__when">Gennaio 2026 — aprile 2026</span>
+            </div>
+            <p class="job__org">Associazione Cinelab</p>
+            <ul class="job__list">
+              <li>Creazione di strategie di comunicazione</li>
+              <li>Creazione di contenuti digitali</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job__top">
+              <h3 class="job__role">Web &amp; graphic designer — communication strategist</h3>
+              <span class="job__when">Maggio 2025 — novembre 2025</span>
+            </div>
+            <p class="job__org">Cavallo StrateX</p>
+            <ul class="job__list">
+              <li>Creazione di strategie di comunicazione per startup tech</li>
+              <li>Creazione di contenuti digitali</li>
+              <li>Realizzazione di siti web</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job__top">
+              <h3 class="job__role">Runner (cameriere) — Ocktoberfest Cuneo</h3>
+              <span class="job__when">Stagioni 2022 e 2023</span>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job__top">
+              <h3 class="job__role">Assistente bagnanti e istruttore di nuoto</h3>
+              <span class="job__when">2022 — presente</span>
+            </div>
+            <p class="job__org">Piscina comunale di Cuneo</p>
+          </article>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span>Andrea Mariotti — Curriculum Vitae</span>
+    <span>andrea.mariotticn@icloud.com</span>
+  </footer>
+</main>
+
+</body>
+</html>

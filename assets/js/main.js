@@ -12,8 +12,6 @@
 
   /* ---------- ICONE ---------- */
   const ICON = {
-    post:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M17 20.5H6a2.5 2.5 0 0 1-2.5-2.5V7" stroke-linecap="round"/></svg>',
-    play:      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>',
     eye:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>',
     heart:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-9.4A4.1 4.1 0 0 1 12 7.8a4.1 4.1 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20Z"/></svg>',
     arrow:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>'
@@ -54,22 +52,17 @@
       /* i post sono 4:5: stanno dentro la card senza essere tagliati,
          con la stessa immagine sfocata a riempire lo sfondo */
       const isPost = (c.formato || c.categoria) === "post";
-      /* i contenuti con rilievo:true occupano due colonne e due righe:
-         restano 9/16 ma pesano il doppio nella lettura della griglia */
-      const big = c.rilievo === true;
       const bg = isPost && c.img
         ? `<i class="reel__bg" style="background-image:url('${esc(c.img)}')"></i>` : "";
 
       return `
-      <a class="reel reveal${isPost ? " reel--post" : ""}${big ? " reel--big" : ""}" data-d="${i % 4}" data-cat="${esc(c.categoria || "reel")}"
+      <a class="reel reveal${isPost ? " reel--post" : ""}" data-d="${i % 4}" data-cat="${esc(c.categoria || "reel")}"
          href="${esc(c.link || "#")}" ${c.link && c.link !== "#" ? 'target="_blank" rel="noopener"' : ""}
          aria-label="${esc(c.titolo)}">
         <div class="reel__media">${bg}${imgWithFallback(c.img, c.titolo, fb)}</div>
         <div class="reel__top">
-          <span class="chip">${isPost ? ICON.post : ICON.play}${isPost ? "Post" : "Reel"}</span>
-          ${big ? '<span class="chip chip--hot">In evidenza</span>' : ""}
+          <span class="chip">${isPost ? "Post" : "Reel"}</span>
         </div>
-        <span class="reel__play" aria-hidden="true">${ICON.play}</span>
         <div class="reel__info">
           <p class="reel__title">${esc(c.titolo)}</p>
           ${stats ? `<div class="reel__stats">${stats}</div>` : ""}
@@ -222,8 +215,23 @@
     if (typeof CONTENUTI !== "undefined") {
       /* prima i contenuti che hanno davvero una copertina */
       const conImg = CONTENUTI.filter(c => c.img);
-      const reel = conImg.filter(c => (c.formato || c.categoria) !== "post");
-      const post = conImg.filter(c => (c.formato || c.categoria) === "post");
+      /* la hero deve raccontare tutti i progetti, non solo l'ultimo cliente:
+         prendo i contenuti a giro fra i clienti, nell'ordine della lista */
+      const aGiro = list => {
+        const gruppi = [], dove = {};
+        list.forEach(c => {
+          const k = c.cliente || "-";
+          if (!(k in dove)) { dove[k] = gruppi.length; gruppi.push([]); }
+          gruppi[dove[k]].push(c);
+        });
+        const out = [];
+        for (let r = 0; out.length < list.length; r++) {
+          gruppi.forEach(g => { if (g[r]) out.push(g[r]); });
+        }
+        return out;
+      };
+      const reel = aGiro(conImg.filter(c => (c.formato || c.categoria) !== "post"));
+      const post = aGiro(conImg.filter(c => (c.formato || c.categoria) === "post"));
       /* alterna reel e post cosi' la hero mostra un po' di tutto */
       [reel[0], post[0], reel[1], reel[2], post[1], reel[3]].forEach(c => {
         if (c) out.push({
