@@ -26,14 +26,23 @@ da solo — i filtri "Tutti / Reel / Post" si generano in automatico dalle categ
 Se un'immagine manca o il percorso è sbagliato, al suo posto compare un segnaposto neon
 coerente con il brand: il sito non si rompe mai.
 
-### Contenuti già caricati
+### Contenuti già caricati
 
-I 5 reel e i 4 post vengono dal deck Figma del portfolio. Le copertine sono state
-convertite in WebP: **452 KB in totale** partendo da 24 MB di originali.
+**14 contenuti**: 10 reel e 4 post, ognuno con il link al suo post su Instagram.
+Le copertine sono in WebP, **548 KB in tutto**.
 
-⚠️  I link delle card puntano per ora al **profilo** Instagram (cinelab.torino e
-ftcitaly), non al singolo post. Per sistemarli apri `assets/js/data.js` e sostituisci
-il campo `link` di ogni contenuto con l'URL che Instagram ti dà con "Copia link".
+Sulla card il tag in alto a sinistra dice che tipo di contenuto è (*Reel* o *Post*),
+non su che piattaforma sta.
+
+**Mettere un contenuto in evidenza**: aggiungi `rilievo: true` al suo blocco in
+`data.js`. La card occupa due colonne e due righe (quindi è grande il doppio ma
+resta 9:16) e prende l'etichetta "In evidenza". Tienine **due o quattro** e mettili
+in cima alla lista: così riempiono righe intere e la griglia non lascia buchi.
+
+Le copertine dei cinque reel di Francesco Fina arrivano da Instagram, che senza login
+ne serve solo una versione da 360 × 640. Se vuoi le due card in evidenza più nitide,
+esporta un fotogramma dal video originale a 720 × 1280 e sovrascrivi
+`assets/img/reel/fina-trailer.webp` e `assets/img/reel/fina-pedersoli.webp`.
 
 ### Immagini consigliate
 | Dove | Formato | Dimensione |

@@ -12,17 +12,13 @@
 
   /* ---------- ICONE ---------- */
   const ICON = {
-    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>',
-    tiktok:    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13a2.5 2.5 0 1 1-2.5-2.5c.2 0 .4 0 .6.07V9.5A5.5 5.5 0 1 0 16.5 15V8.4a7 7 0 0 0 4 1.26V6.6a4.1 4.1 0 0 1-4-4.6Z"/></svg>',
-    youtube:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg>',
-    linkedin:  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C20.4 8.75 21 11 21 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.38 1.6-2.38 3.27V21H9z"/></svg>',
+    post:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="3" width="14" height="14" rx="3"/><path d="M17 20.5H6a2.5 2.5 0 0 1-2.5-2.5V7" stroke-linecap="round"/></svg>',
     play:      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>',
     eye:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>',
     heart:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-9.4A4.1 4.1 0 0 1 12 7.8a4.1 4.1 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20Z"/></svg>',
     arrow:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>'
   };
 
-  const PLATFORM_LABEL = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", linkedin: "LinkedIn" };
   const BLOB_CLASSES = ["blob--cyan", "blob--green", "blob--blue", "blob--teal"];
 
   /* ---------- immagini con fallback elegante ---------- */
@@ -48,7 +44,6 @@
     if (!grid || typeof CONTENUTI === "undefined") return;
 
     grid.innerHTML = CONTENUTI.map((c, i) => {
-      const plat = (c.piattaforma || "instagram").toLowerCase();
       const blob = BLOB_CLASSES[i % BLOB_CLASSES.length];
       const fb = `<div class="reel__fb"><div class="blob blob--soft ${blob}" style="width:78%;aspect-ratio:1;position:absolute;inset:0;margin:auto"></div><span>${esc(c.categoria || "reel")}</span></div>`;
       const stats = [
@@ -59,16 +54,20 @@
       /* i post sono 4:5: stanno dentro la card senza essere tagliati,
          con la stessa immagine sfocata a riempire lo sfondo */
       const isPost = (c.formato || c.categoria) === "post";
+      /* i contenuti con rilievo:true occupano due colonne e due righe:
+         restano 9/16 ma pesano il doppio nella lettura della griglia */
+      const big = c.rilievo === true;
       const bg = isPost && c.img
         ? `<i class="reel__bg" style="background-image:url('${esc(c.img)}')"></i>` : "";
 
       return `
-      <a class="reel reveal${isPost ? " reel--post" : ""}" data-d="${i % 4}" data-cat="${esc(c.categoria || "reel")}"
+      <a class="reel reveal${isPost ? " reel--post" : ""}${big ? " reel--big" : ""}" data-d="${i % 4}" data-cat="${esc(c.categoria || "reel")}"
          href="${esc(c.link || "#")}" ${c.link && c.link !== "#" ? 'target="_blank" rel="noopener"' : ""}
          aria-label="${esc(c.titolo)}">
         <div class="reel__media">${bg}${imgWithFallback(c.img, c.titolo, fb)}</div>
         <div class="reel__top">
-          <span class="chip">${ICON[plat] || ICON.instagram}${esc(PLATFORM_LABEL[plat] || plat)}</span>
+          <span class="chip">${isPost ? ICON.post : ICON.play}${isPost ? "Post" : "Reel"}</span>
+          ${big ? '<span class="chip chip--hot">In evidenza</span>' : ""}
         </div>
         <span class="reel__play" aria-hidden="true">${ICON.play}</span>
         <div class="reel__info">

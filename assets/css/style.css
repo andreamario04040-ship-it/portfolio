@@ -542,6 +542,9 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 .reels{
   display:grid;gap:var(--sp-2);
   grid-template-columns:repeat(4,minmax(0,1fr));
+  /* le card in evidenza sono 2x2: "dense" fa risalire le piccole
+     negli spazi che restano, cosi' la griglia non ha buchi */
+  grid-auto-flow:dense;
 }
 .reel{
   position:relative;display:block;border-radius:var(--radius);overflow:hidden;
@@ -550,6 +553,12 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   transition:transform .55s var(--ease-out),border-color .4s,box-shadow .55s;
 }
 .reel.is-hidden{display:none;}
+/* IN EVIDENZA: due colonne e due righe -> stesso 9/16, dimensione doppia */
+.reel--big{grid-column:span 2;grid-row:span 2;}
+.reel--big .reel__info{left:22px;right:22px;bottom:22px;}
+.reel--big .reel__title{font-size:clamp(1.05rem,1.5vw,1.3rem);-webkit-line-clamp:3;}
+.reel--big .reel__play{width:78px;height:78px;}
+.reel--big .reel__play svg{width:27px;height:27px;}
 .reel:hover{transform:translateY(-8px);border-color:var(--line-strong);box-shadow:0 30px 60px -28px rgba(0,0,0,.9);}
 .reel__media{position:absolute;inset:0;z-index:0;}
 .reel__media img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease-out),filter .5s;}
@@ -580,6 +589,9 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   font-size:var(--fs-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--white);
 }
 .chip svg{width:13px;height:13px;}
+.chip--hot{
+  background:var(--grad-brand);border-color:transparent;color:var(--ink-900);
+}
 .reel__play{
   position:absolute;z-index:3;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;
   display:grid;place-items:center;
@@ -783,12 +795,17 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
     gap:var(--sp-2);overflow-x:auto;overscroll-behavior-x:contain;
     scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
     scroll-padding-inline:var(--gutter);
+    /* senza questo le card piccole si allungherebbero fino all'altezza
+       di quella in evidenza, perdendo il formato 9/16 */
+    align-items:center;
     padding-inline:var(--gutter);padding-bottom:6px;
     margin-inline:calc(var(--gutter) * -1);
     scrollbar-width:none;
   }
   .reels::-webkit-scrollbar{display:none;}
   .reel{flex:0 0 72%;scroll-snap-align:start;max-width:none;margin-inline:0;}
+  /* nel carosello non ci sono colonne: il rilievo diventa larghezza */
+  .reel--big{flex-basis:88%;}
   /* dentro al carosello le card restano fuori dal viewport finche' non scorri:
      senza questo partirebbero invisibili e rimpicciolite */
   .reels > .reel.reveal{opacity:1;transform:none;filter:none;}
@@ -810,6 +827,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 }
 @media (max-width:420px){
   .reel{flex-basis:78%;}
+  .reel--big{flex-basis:92%;}
 }
 
 /* ---------- 17. MOTION / PRINT ---------- */

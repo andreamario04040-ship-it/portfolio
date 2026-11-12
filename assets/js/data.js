@@ -21,10 +21,71 @@ const FOTO = "assets/img/andrea.webp";
    img        : copertina, es. "assets/img/reel/nome.webp"
    link       : URL del contenuto online
    views/likes: metriche mostrate sulla card (lascia "" per nasconderle)
+   rilievo   : true -> il contenuto va in evidenza (card doppia, in cima
+               alla griglia). Tienine due o quattro: occupano due colonne
+               e due righe ciascuna, cosi' la griglia resta piena.
 
-   Ogni contenuto punta al suo post su Instagram.
+   Sulla card il tag mostra il tipo di contenuto ("Reel" o "Post"),
+   non la piattaforma. Ogni contenuto punta al suo post su Instagram.
 --------------------------------------------------------- */
 const CONTENUTI = [
+  {
+    titolo: "Trailer di un film? No, la mia vita da fighter",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-trailer.webp",
+    link: "https://www.instagram.com/reel/DM5F9ELNgcI/",
+    views: "",
+    likes: "169",
+    rilievo: true
+  },
+  {
+    titolo: "Come ho vinto contro Carlo Pedersoli Jr",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-pedersoli.webp",
+    link: "https://www.instagram.com/reel/DLw_sr8NCYL/",
+    views: "",
+    likes: "",
+    rilievo: true
+  },
+  {
+    titolo: "«Il vero nemico è quello allo specchio»",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-specchio.webp",
+    link: "https://www.instagram.com/reel/DKo5dveN9R8/",
+    views: "",
+    likes: "167"
+  },
+  {
+    titolo: "Sparring highlights",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-sparring.webp",
+    link: "https://www.instagram.com/reel/DMVRK5bN7nL/",
+    views: "",
+    likes: ""
+  },
+  {
+    titolo: "Come battere il tuo sparring partner",
+    cliente: "Francesco Fina",
+    categoria: "reel",
+    formato: "reel",
+    piattaforma: "instagram",
+    img: "assets/img/reel/fina-tecnica.webp",
+    link: "https://www.instagram.com/reel/DMnEYA4NfHk/",
+    views: "",
+    likes: "132"
+  },
   {
     titolo: "Recitazione — «Quanto ci credevamo?»",
     cliente: "Ass. CineLAB",
