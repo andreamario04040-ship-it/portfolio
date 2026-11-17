@@ -324,14 +324,21 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   pointer-events:none;
 }
 
-/* il nome resta fermo al centro */
+/* Il titolo sta su un livello fisso tutto suo: al centro dello schermo
+   mentre scorri la hero, poi lo stesso elemento rimpicciolisce e si posa
+   sulla bolla del "Chi sono" (lo muove initNomeVolante). */
+.name-fly{
+  position:fixed;inset:0;z-index:40;
+  display:grid;place-items:center;
+  padding-inline:var(--gutter);
+  pointer-events:none;
+}
 .hero__name{
   width:100%;max-width:var(--maxw);
   font-size:clamp(3.2rem,17vw,11.5rem);
   display:flex;flex-direction:column;
-  transform:translate3d(var(--nx,0px),var(--ny,0px),var(--nz,0px)) scale(var(--nsc,1));
-  opacity:var(--nop,1);
-  will-change:transform,opacity;
+  transform-origin:50% 50%;
+  will-change:transform;
   /* tiene il nome leggibile anche sopra le zone piu' accese */
   text-shadow:0 4px 48px rgba(13,12,12,.6);
 }
@@ -456,19 +463,6 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 .portrait__stage{
   position:relative;z-index:2;aspect-ratio:1;
   display:grid;place-items:center;
-}
-/* Il nome della hero "atterra" qui: resta dietro al cerchio (e dietro alla
-   testa, che gli passa davanti) e ne sbuca ai lati e in alto.
-   La misura la calcola initNomeBolla, cosi' resta sempre un po' piu' largo
-   della bolla su qualsiasi schermo. */
-.portrait__name{
-  position:absolute;z-index:0;left:50%;top:15%;
-  white-space:nowrap;pointer-events:none;
-  color:rgba(255,255,255,.92);
-  text-shadow:0 6px 40px rgba(13,12,12,.55);
-  transform:translate(-50%,-50%) translateY(calc((1 - var(--pn,0)) * 52px));
-  opacity:var(--pn,0);
-  will-change:transform,opacity;
 }
 .portrait__ring{
   position:absolute;inset:0;border-radius:50%;

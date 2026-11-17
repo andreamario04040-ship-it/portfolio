@@ -189,6 +189,9 @@
       });
     });
     requestAnimationFrame(() => h1.classList.add("is-ready"));
+    /* se la pagina si apre in secondo piano i frame non arrivano e le lettere
+       resterebbero invisibili: dopo mezzo secondo le accendo comunque */
+    setTimeout(() => h1.classList.add("is-ready"), 500);
   }
 
   /* ---------- 2c. HERO: sequenza 3D a scorrimento ---------- */
@@ -435,18 +438,11 @@
       }
 
       /* il nome si allontana e sfuma solo nell'ultimo tratto, per passare al Chi sono */
-      /* Negli ultimi centimetri il nome rimpicciolisce e scende verso il
-         "Chi sono", dove riappare dietro alla bolla: il passaggio si legge
-         come un unico movimento invece di una dissolvenza secca. */
+      /* Il titolo non sta piu' qui dentro: se ne occupa initNomeVolante.
+         Qui resta solo il velo, che sfuma quando la hero finisce. */
       const out = Math.min(1, Math.max(0, (p - 0.84) / 0.16));
-      const o2 = out * out;
-      /* sul contenitore 3D cosi' il velo dietro al titolo sfuma insieme al nome */
       const host = c3d || name;
       host.style.setProperty("--nop", (1 - Math.pow(out, 1.7)).toFixed(3));
-      host.style.setProperty("--nz", (-out * 220).toFixed(0) + "px");
-      host.style.setProperty("--ny", (o2 * 13).toFixed(2) + "vh");
-      host.style.setProperty("--nx", (small ? 0 : -o2 * 5).toFixed(2) + "vw");
-      host.style.setProperty("--nsc", (1 - out * 0.4).toFixed(3));
       if (cue) cue.style.setProperty("--cue", Math.max(0, 1 - p * 8).toFixed(3));
 
       last = now;
@@ -664,40 +660,46 @@
     card.addEventListener("pointerleave", reset);
   }
 
-  /* ---------- 6b. IL NOME DIETRO LA BOLLA ---------- */
-  /* Il nome arrivato dalla hero sale mentre scorri e poi resta li'.
-     La misura segue la larghezza della bolla: sempre un filo piu' largo. */
-  function initNomeBolla() {
-    const stage = $("#portrait");
-    const nome = $("#portraitName");
-    if (!stage || !nome) return;
+  /* ---------- 6b. IL TITOLO CHE SI POSA SULLA BOLLA ---------- */
+  /* Lo stesso titolo della hero: resta al centro dello schermo finche'
+     scorri la hero, poi rimpicciolisce e si posa sulla bolla del "Chi sono",
+     davanti alla foto. Il movimento e' legato allo scorrimento, quindi va
+     avanti e indietro insieme a te. */
+  function initNomeVolante() {
+    const fly = $("#nameFly");
+    const nome = $("#heroName");
+    const bolla = $("#portrait");
+    if (!fly || !nome || !bolla) return;
 
-    const misura = () => {
-      const w = stage.getBoundingClientRect().width;
-      if (!w) return;
-      nome.style.fontSize = (w * 0.152).toFixed(1) + "px";
-      /* su schermi stretti il nome non deve toccare i bordi */
-      const largo = nome.getBoundingClientRect().width;
-      const max = window.innerWidth * 0.94;
-      if (largo > max) {
-        nome.style.fontSize = (w * 0.152 * max / largo).toFixed(1) + "px";
-      }
-    };
-
-    let raf = null;
     const disegna = () => {
-      raf = null;
-      const r = stage.getBoundingClientRect();
-      const t = REDUCED ? 1 : Math.min(1, Math.max(0,
-        (window.innerHeight * 0.9 - r.top) / (window.innerHeight * 0.5)));
-      nome.style.setProperty("--pn", (1 - Math.pow(1 - t, 3)).toFixed(3));
-    };
-    const chiedi = () => { if (!raf) raf = requestAnimationFrame(disegna); };
+      const r = bolla.getBoundingClientRect();
+      const vw = window.innerWidth, vh = window.innerHeight;
+      if (!r.width) return;
 
-    misura();
+      /* t = 0 quando la bolla e' ancora sotto lo schermo (titolo al centro),
+         t = 1 quando la bolla e' a posto (titolo appoggiato su di lei) */
+      const da = vh * 1.25, a = vh * 0.35;
+      const t = Math.min(1, Math.max(0, (da - r.top) / (da - a)));
+      const e = 1 - Math.pow(1 - t, 3);
+
+      const base = nome.offsetWidth || 1;
+      const sFin = (r.width * 0.84) / base;          /* un po' piu' stretto della bolla */
+      const dxFin = r.left + r.width / 2 - vw / 2;
+      /* si appoggia SOPRA la bolla: il bordo basso delle lettere sfiora i
+         capelli, la faccia resta libera */
+      const dyFin = r.top - r.height * 0.22 - vh / 2;
+
+      const s = 1 + (sFin - 1) * e;
+      nome.style.transform =
+        "translate(" + (dxFin * e).toFixed(1) + "px," + (dyFin * e).toFixed(1) + "px)" +
+        " scale(" + s.toFixed(4) + ")";
+    };
+    /* Lo scorrimento chiama direttamente il calcolo: e' una lettura e una
+       scrittura di stile, e cosi' il titolo non resta mai indietro nemmeno
+       quando il browser rallenta i frame. */
     disegna();
-    window.addEventListener("scroll", chiedi, { passive: true });
-    window.addEventListener("resize", () => { misura(); chiedi(); }, { passive: true });
+    window.addEventListener("scroll", disegna, { passive: true });
+    window.addEventListener("resize", disegna, { passive: true });
   }
 
   /* ---------- 7. FOTO RITRATTO ---------- */
@@ -740,7 +742,7 @@
     initHeroName();
     initHeroScroll();
     initPortrait();
-    initNomeBolla();
+    initNomeVolante();
     initMagnet();
     initReveal();
     initTextAnim();

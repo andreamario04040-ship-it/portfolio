@@ -40,6 +40,16 @@
 </head>
 <body>
 
+<!-- Il titolo della hero: un livello fisso sopra la pagina. Resta al centro
+     finche' scorri la hero, poi rimpicciolisce e va a posarsi sulla bolla del
+     "Chi sono", davanti alla foto. E' sempre la stessa scritta. -->
+<div class="name-fly" id="nameFly">
+  <h1 class="h-display hero__name" id="heroName" aria-label="Andrea Mariotti">
+    <span class="hero__line l1">Andrea</span>
+    <span class="hero__line l2">Mariotti</span>
+  </h1>
+</div>
+
 <!-- ===================== NAV ===================== -->
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
@@ -95,12 +105,9 @@
         <!-- palline, preview e parole: generate da main.js -->
         <div class="hero__field" id="heroField" aria-hidden="true"></div>
 
-        <div class="hero__center">
-          <h1 class="h-display hero__name" id="heroName" aria-label="Andrea Mariotti">
-            <span class="hero__line l1">Andrea</span>
-            <span class="hero__line l2">Mariotti</span>
-          </h1>
-        </div>
+        <!-- il velo resta qui, il titolo vive nel livello #nameFly in fondo
+             alla pagina: deve poter uscire dalla hero e posarsi sulla bolla -->
+        <div class="hero__center" aria-hidden="true"></div>
       </div>
 
       <a class="scroll-cue" href="#chi-sono" id="scrollCue"><i aria-hidden="true"></i> Scorri</a>
@@ -118,7 +125,6 @@
         <div class="blob blob--lime float float--rev b2" aria-hidden="true"></div>
         <div class="portrait__stage" id="portrait">
           <!-- La foto si imposta da assets/js/data.js (costante FOTO) -->
-          <span class="portrait__name h-display" id="portraitName" aria-hidden="true">Andrea Mariotti</span>
           <div class="portrait__ring" aria-hidden="true"></div>
           <span class="portrait__fallback" aria-hidden="true">AM</span>
         </div>

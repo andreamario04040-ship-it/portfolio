@@ -109,11 +109,14 @@ preview dei contenuti e parole chiave salgono verso l'alto su piani di profondit
 diversi, passando dietro (e qualcuna davanti) alle lettere. Dura **220vh di
 scorrimento** su desktop e **200vh** su mobile.
 
-Alla fine il nome **non sparisce e basta**: rimpicciolisce, scende (e su desktop
-scivola un po' verso sinistra) e va a riprendersi nel Chi sono, dove lo stesso
-"Andrea Mariotti" sale da sotto e si ferma **dietro alla bolla blu**, con la
-faccia e le spalle che gli passano davanti. Lo gestiscono le variabili
-`--ny/--nx/--nsc/--nop` nella hero e `initNomeBolla` nel Chi sono.
+Alla fine il nome **non sparisce**: e' sempre lo stesso elemento e se ne va a
+posare **sopra la bolla** del Chi sono. Il titolo vive su un livello fisso tutto
+suo (`#nameFly`, fuori dalla scena 3D): resta al centro dello schermo finche'
+scorri la hero, poi rimpicciolisce — da tutta larghezza a circa l'84% della
+bolla — si centra su di lei e si ferma appena sopra, davanti alla foto. Il
+movimento e' legato allo scorrimento, quindi va avanti e indietro con te.
+Lo fa `initNomeVolante` in `main.js`: per spostare il punto d'arrivo si toccano
+`sFin` (quanto rimpicciolisce) e `dyFin` (quanto sta in alto).
 
 - **Prospettiva vera**: tutto vive in uno spazio 3D (`perspective: 1150px`). Gli
   elementi lontani sono più piccoli, più sfocati, più spenti e si muovono di meno —
