@@ -503,7 +503,8 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
           mask-position:50% 0;
   -webkit-mask-repeat:no-repeat;
           mask-repeat:no-repeat;
-  filter:drop-shadow(0 -4px 16px rgba(0,0,0,.4));
+  /* niente ombra sulla copia della testa: la fascia mascherata la proiettava
+     anche dentro la bolla e si vedeva lo stacco fra le due copie */
 }
 .portrait__fallback{
   font-family:var(--font-display);font-weight:700;font-size:clamp(3rem,9vw,5.5rem);
