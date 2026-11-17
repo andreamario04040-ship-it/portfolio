@@ -107,8 +107,13 @@ in evidenza, nel bottone principale e nella barra di avanzamento.
 All'apertura il nome **ANDREA MARIOTTI** resta fermo al centro mentre palline,
 preview dei contenuti e parole chiave salgono verso l'alto su piani di profondità
 diversi, passando dietro (e qualcuna davanti) alle lettere. Dura **220vh di
-scorrimento** su desktop e **200vh** su mobile, poi il nome si allontana e si va
-dritti al Chi sono.
+scorrimento** su desktop e **200vh** su mobile.
+
+Alla fine il nome **non sparisce e basta**: rimpicciolisce, scende (e su desktop
+scivola un po' verso sinistra) e va a riprendersi nel Chi sono, dove lo stesso
+"Andrea Mariotti" sale da sotto e si ferma **dietro alla bolla blu**, con la
+faccia e le spalle che gli passano davanti. Lo gestiscono le variabili
+`--ny/--nx/--nsc/--nop` nella hero e `initNomeBolla` nel Chi sono.
 
 - **Prospettiva vera**: tutto vive in uno spazio 3D (`perspective: 1150px`). Gli
   elementi lontani sono più piccoli, più sfocati, più spenti e si muovono di meno —
@@ -119,8 +124,10 @@ dritti al Chi sono.
   il raggio del `radial-gradient` o alzandone le opacità.
 - **Morbidezza**: la posizione insegue lo scorrimento con un'interpolazione, così
   anche uno scatto della rotellina si trasforma in un movimento fluido.
-- **Mobile**: stessa animazione, con una selezione ridotta di elementi (19 invece
-  di 25) e dimensioni al 60%, per non appesantire il telefono.
+- **Mobile**: stessa animazione con meno elementi e corsie piu' strette. Le parole
+  hanno misure loro (`WORD_SIZE_SM`): abbastanza grandi da leggersi, ma sempre sotto
+  al titolo, con "Web Design" un gradino piu' basso delle altre. Quelle lunghe vanno
+  a capo invece di uscire dallo schermo.
 - **Entrata al caricamento**: aloni e barra di navigazione entrano in dissolvenza,
   poi gli elementi si accendono uno dopo l'altro avvicinandosi dal fondo, infine
   compare l'invito a scorrere. Se la pagina si apre in una scheda in secondo piano
@@ -139,8 +146,8 @@ Tutto è definito in `assets/js/main.js`, nella tabella `HERO_LAYOUT`:
 | `st` | quando entra in scena (0 = inizio, 1 = fine); negativo = già visibile all'apertura |
 | `m` | `1` se deve comparire anche su mobile |
 
-Le **parole** sono in `HERO_WORDS`, le **preview** arrivano da sole dai primi 4
-contenuti e dai primi 2 siti di `data.js`: appena metti un'immagine vera lì, compare
+Le **parole** sono in `HERO_WORDS` (misure in `WORD_SIZE` e `WORD_SIZE_SM` per il
+telefono), le **preview** arrivano da sole dai contenuti di `data.js`: appena metti un'immagine vera lì, compare
 anche qui dentro. Finché non c'è, resta un segnaposto sfumato con il titolo.
 
 ## Le altre animazioni

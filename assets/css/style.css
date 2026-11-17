@@ -329,7 +329,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   width:100%;max-width:var(--maxw);
   font-size:clamp(3.2rem,17vw,11.5rem);
   display:flex;flex-direction:column;
-  transform:translate3d(0,0,var(--nz,0px));
+  transform:translate3d(var(--nx,0px),var(--ny,0px),var(--nz,0px)) scale(var(--nsc,1));
   opacity:var(--nop,1);
   will-change:transform,opacity;
   /* tiene il nome leggibile anche sopra le zone piu' accese */
@@ -456,6 +456,19 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
 .portrait__stage{
   position:relative;z-index:2;aspect-ratio:1;
   display:grid;place-items:center;
+}
+/* Il nome della hero "atterra" qui: resta dietro al cerchio (e dietro alla
+   testa, che gli passa davanti) e ne sbuca ai lati e in alto.
+   La misura la calcola initNomeBolla, cosi' resta sempre un po' piu' largo
+   della bolla su qualsiasi schermo. */
+.portrait__name{
+  position:absolute;z-index:0;left:50%;top:15%;
+  white-space:nowrap;pointer-events:none;
+  color:rgba(255,255,255,.92);
+  text-shadow:0 6px 40px rgba(13,12,12,.55);
+  transform:translate(-50%,-50%) translateY(calc((1 - var(--pn,0)) * 52px));
+  opacity:var(--pn,0);
+  will-change:transform,opacity;
 }
 .portrait__ring{
   position:absolute;inset:0;border-radius:50%;
@@ -785,7 +798,7 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
   .reels{
     display:flex;grid-template-columns:none;
     gap:var(--sp-2);overflow-x:auto;overscroll-behavior-x:contain;
-    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
     scroll-padding-inline:var(--gutter);
     /* ogni card tiene il suo 9/16 invece di stirarsi in altezza */
     align-items:center;
@@ -794,7 +807,17 @@ body.menu-open .menu__link{animation:menuIn .55s var(--ease-out) forwards;}
     scrollbar-width:none;
   }
   .reels::-webkit-scrollbar{display:none;}
-  .reels > .reel{flex:0 0 72%;scroll-snap-align:start;max-width:none;margin:0;}
+  /* "Content Creation" a tutta riga uscirebbe dallo schermo: su mobile le
+     parole lunghe vanno a capo invece di rimpicciolirsi. width:max-content
+     serve perche' il contenitore e' largo 0: senza, andrebbero a capo tutte. */
+  .fx-word{
+    white-space:normal;width:max-content;max-width:64vw;
+    line-height:.94;text-align:center;
+  }
+  .reels > .reel{
+    flex:0 0 72%;max-width:none;margin:0;
+    scroll-snap-align:start;scroll-snap-stop:always;
+  }
   /* dentro al carosello le card restano fuori dal viewport finche' non scorri:
      senza questo partirebbero invisibili e rimpicciolite */
   .reels > .reel.reveal{opacity:1;transform:none;filter:none;}

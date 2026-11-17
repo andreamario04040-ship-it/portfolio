@@ -198,6 +198,10 @@
   const HERO_WORDS = ["Web Design", "Reel", "Social Media", "UI / UX", "Content Creation", "Branding"];
   const WORD_STYLE = ["fill", "out", "grad", "out", "fill", "out"];
   const WORD_SIZE  = [54, 76, 46, 66, 42, 60];
+  /* Su mobile il titolo e' alto circa 64px: le parole devono leggersi bene
+     ma restare sotto, con la prima ("Web Design") un gradino piu' bassa
+     delle altre, cosi' la gerarchia si vede. */
+  const WORD_SIZE_SM = [44, 60, 50, 56, 48, 54];
 
   /* x = % della larghezza dal centro · z = profondita' · st = quando entra
      m = 1 → resta anche su schermi piccoli
@@ -318,7 +322,8 @@
       } else if (d.k === "word") {
         const word = document.createElement("div");
         word.className = "fx-word fx-word--" + WORD_STYLE[d.w];
-        word.style.setProperty("--fs", Math.round(WORD_SIZE[d.w] * scale) + "px");
+        word.style.setProperty("--fs",
+          (small ? WORD_SIZE_SM[d.w] : Math.round(WORD_SIZE[d.w] * scale)) + "px");
         word.textContent = HERO_WORDS[d.w];
         inner.appendChild(word);
 
@@ -430,11 +435,18 @@
       }
 
       /* il nome si allontana e sfuma solo nell'ultimo tratto, per passare al Chi sono */
-      const out = Math.min(1, Math.max(0, (p - 0.87) / 0.13));
+      /* Negli ultimi centimetri il nome rimpicciolisce e scende verso il
+         "Chi sono", dove riappare dietro alla bolla: il passaggio si legge
+         come un unico movimento invece di una dissolvenza secca. */
+      const out = Math.min(1, Math.max(0, (p - 0.84) / 0.16));
+      const o2 = out * out;
       /* sul contenitore 3D cosi' il velo dietro al titolo sfuma insieme al nome */
       const host = c3d || name;
-      host.style.setProperty("--nop", (1 - out).toFixed(3));
-      host.style.setProperty("--nz", (-out * 300).toFixed(0) + "px");
+      host.style.setProperty("--nop", (1 - Math.pow(out, 1.7)).toFixed(3));
+      host.style.setProperty("--nz", (-out * 220).toFixed(0) + "px");
+      host.style.setProperty("--ny", (o2 * 13).toFixed(2) + "vh");
+      host.style.setProperty("--nx", (small ? 0 : -o2 * 5).toFixed(2) + "vw");
+      host.style.setProperty("--nsc", (1 - out * 0.4).toFixed(3));
       if (cue) cue.style.setProperty("--cue", Math.max(0, 1 - p * 8).toFixed(3));
 
       last = now;
@@ -652,6 +664,42 @@
     card.addEventListener("pointerleave", reset);
   }
 
+  /* ---------- 6b. IL NOME DIETRO LA BOLLA ---------- */
+  /* Il nome arrivato dalla hero sale mentre scorri e poi resta li'.
+     La misura segue la larghezza della bolla: sempre un filo piu' largo. */
+  function initNomeBolla() {
+    const stage = $("#portrait");
+    const nome = $("#portraitName");
+    if (!stage || !nome) return;
+
+    const misura = () => {
+      const w = stage.getBoundingClientRect().width;
+      if (!w) return;
+      nome.style.fontSize = (w * 0.152).toFixed(1) + "px";
+      /* su schermi stretti il nome non deve toccare i bordi */
+      const largo = nome.getBoundingClientRect().width;
+      const max = window.innerWidth * 0.94;
+      if (largo > max) {
+        nome.style.fontSize = (w * 0.152 * max / largo).toFixed(1) + "px";
+      }
+    };
+
+    let raf = null;
+    const disegna = () => {
+      raf = null;
+      const r = stage.getBoundingClientRect();
+      const t = REDUCED ? 1 : Math.min(1, Math.max(0,
+        (window.innerHeight * 0.9 - r.top) / (window.innerHeight * 0.5)));
+      nome.style.setProperty("--pn", (1 - Math.pow(1 - t, 3)).toFixed(3));
+    };
+    const chiedi = () => { if (!raf) raf = requestAnimationFrame(disegna); };
+
+    misura();
+    disegna();
+    window.addEventListener("scroll", chiedi, { passive: true });
+    window.addEventListener("resize", () => { misura(); chiedi(); }, { passive: true });
+  }
+
   /* ---------- 7. FOTO RITRATTO ---------- */
   function initPortrait() {
     const frame = $("#portrait");
@@ -692,6 +740,7 @@
     initHeroName();
     initHeroScroll();
     initPortrait();
+    initNomeBolla();
     initMagnet();
     initReveal();
     initTextAnim();
